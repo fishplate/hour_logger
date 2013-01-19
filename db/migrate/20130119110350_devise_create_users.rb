@@ -33,6 +33,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Token authenticatable
       # t.string :authentication_token
 
+      # Adding extra fields
+
+      t.string :last_name
+      t.string :first_name
+      t.string :gender
+      t.date :date_of_birth
+      t.string :contact_number
+
+
 
       t.timestamps
     end
