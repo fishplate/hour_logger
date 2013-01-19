@@ -40,6 +40,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :gender
       t.date :date_of_birth
       t.string :contact_number
+      t.integer :mentor_id
 
 
 

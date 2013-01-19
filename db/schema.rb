@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130119110350) do
     t.string   "gender"
     t.date     "date_of_birth"
     t.string   "contact_number"
+    t.integer  "mentor_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end
