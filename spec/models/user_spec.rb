@@ -19,7 +19,7 @@ describe User do
     end
 
     it "should be able to destroy a user" do
-      @user.destroy.should == true
+      @user.destroy
       User.count.should == 0
     end
   end
