@@ -1,1 +1,13 @@
-something here soon
+<h1>Add your hours </h1>
+<%= form_for @user_hour do |f| %>
+  <%= f.label :date_occurred %>
+  <%= f.date_select(:date_occurred, :start_year => Date.today.years_ago(1).year, :order => [:day, :month, :year]) %>
+  <%= label_tag "Placement name" %>
+  <%= text_field_tag "placement[name]", nil %>
+  <%= label_tag "Placement area" %>
+  <%= text_field_tag "placement[area]", nil %>
+  <%= f.label :hours %>
+  <%= f.text_field :hours, :placeholder => "1.5" %><br />
+  <%= f.submit "Save hours" %>
+
+<% end %>

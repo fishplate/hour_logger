@@ -47,7 +47,10 @@
           <%= link_to "HourLogger", root_path, :class => "brand" %>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "My Hours", user_hours_path  if current_user %></li>
+              <% if current_user %>
+                <li><%= link_to "My Hours", user_hours_path %></li>
+                <li><%= link_to "My Account", "#" %></li>
+              <% end %>
             </ul>
             <ul class="nav pull-right">
               <li><%= display_login  %></li>

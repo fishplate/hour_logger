@@ -1,15 +1,26 @@
+<div class="well">
+  <%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
+</div>
+
 <h1> Your User hours </h1>
-<%= link_to "Log hours", new_user_hour_path, :class => "btn" %>
-<% if @user_hours %>
+<% unless @user_hours.empty? %>
 <!-- Render user hours in partial -->
-  <% @user_hours.each do |user_hour| %>
-    <ul>
-      <h2><%= user_hour.date_occurred %></h2>
-      <li><%= user_hour.hours %></li>
-      <li><%= user_hour.placement.name %></li>
-      <li><%= user_hour.placement.area %></li>
-    </ul>
-  <% end %>
+  <table class="table">
+    <thread>
+      <tr>
+      <th>Date</th><th>Placement Name</th><th>Placement Area</th><th>Hours</th><th>Remove</th>
+      </tr>
+    </thread>
+    <% @user_hours.each do |user_hour| %>
+      <tr>
+        <td><%= user_hour.date_occurred %></td>
+        <td><%= user_hour.placement.name %></td>
+        <td><%= user_hour.placement.area %></td>
+        <td><%= user_hour.hours %></td>
+        <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn" %>
+      </tr>
+    <% end %>
+  </table>
 <% else %>
   <p>Hey, you don't seem to have any hours logged?</p>
 <% end %>
