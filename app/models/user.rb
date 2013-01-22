@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :last_name, :first_name, :gender, :date_of_birth, :contact_number, :mentor_id
 
-  has_many :user_hours
+  has_many :user_hours, :dependent => :destroy
 end
