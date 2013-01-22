@@ -2,6 +2,10 @@ class UserHoursController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @user_hours = current_user.user_hours
+  end
+
+  def new
 
   end
 

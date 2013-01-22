@@ -8,8 +8,8 @@ describe UserHoursController do
     end
 
     it "should get index" do
-      pending ("needs template")
       get :index
+      assigns(:user_hours).should == given_user.user_hours
       response.should be_success
     end
 

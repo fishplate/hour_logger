@@ -1,0 +1,15 @@
+<h1> Your User hours </h1>
+<%= link_to "Log hours", new_user_hour_path, :class => "btn" %>
+<% if @user_hours %>
+<!-- Render user hours in partial -->
+  <% @user_hours.each do |user_hour| %>
+    <ul>
+      <h2><%= user_hour.date_occurred %></h2>
+      <li><%= user_hour.hours %></li>
+      <li><%= user_hour.placement.name %></li>
+      <li><%= user_hour.placement.area %></li>
+    </ul>
+  <% end %>
+<% else %>
+  <p>Hey, you don't seem to have any hours logged?</p>
+<% end %>
