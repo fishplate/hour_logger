@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(:version => 20130119193047) do
     t.integer  "user_id"
     t.float    "hours"
     t.integer  "placement_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.date     "date_occurred"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
