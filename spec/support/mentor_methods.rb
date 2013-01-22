@@ -5,3 +5,7 @@ def mentor_params
     first_name: "mister",
   }
 end
+
+def given_mentor
+  @mentor ||= Mentor.create!(mentor_params)
+end

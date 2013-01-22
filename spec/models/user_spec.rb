@@ -19,9 +19,17 @@ describe User do
     end
 
     it "should be able to destroy a user" do
+      @user.save
       @user.destroy
       User.count.should == 0
     end
+
+    it "should be able to get mentor" do
+      @user.mentor_id = given_mentor.id
+      @user.save
+      @user.mentor.should == given_mentor
+    end
+
   end
 
 end

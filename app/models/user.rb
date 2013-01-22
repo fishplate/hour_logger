@@ -10,4 +10,9 @@ class User < ActiveRecord::Base
   attr_accessible :last_name, :first_name, :gender, :date_of_birth, :contact_number, :mentor_id
 
   has_many :user_hours, :dependent => :destroy
+
+  def mentor
+    return unless self.mentor_id
+    Mentor.find_by_id(self.mentor_id)
+  end
 end
