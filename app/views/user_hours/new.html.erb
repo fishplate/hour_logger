@@ -8,6 +8,6 @@
   <%= text_field_tag "placement[area]", nil %>
   <%= f.label :hours %>
   <%= f.text_field :hours, :placeholder => "1.5" %><br />
-  <%= f.submit "Save hours" %>
-
+  <%= link_to "cancel", :back, :class => "btn" %>
+  <%= f.submit "Save hours", :class => "btn btn-success" %>
 <% end %>

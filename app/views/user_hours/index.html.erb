@@ -8,15 +8,16 @@
   <table class="table">
     <thread>
       <tr>
-      <th>Date</th><th>Placement Name</th><th>Placement Area</th><th>Hours</th><th>Remove</th>
+      <th>Date</th><th>Placement Name</th><th>Placement Area</th><th>Hours</th><th>Edit</th><th>Remove</th>
       </tr>
     </thread>
     <% @user_hours.each do |user_hour| %>
       <tr>
-        <td><%= user_hour.date_occurred %></td>
+        <td><%= link_to user_hour.date_occurred, user_hour_path(user_hour.id) %></td>
         <td><%= user_hour.placement.name %></td>
         <td><%= user_hour.placement.area %></td>
         <td><%= user_hour.hours %></td>
+        <td><%= link_to "edit", user_hour_path(user_hour.id), :class => "btn btn-warning" %>
         <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn" %>
       </tr>
     <% end %>

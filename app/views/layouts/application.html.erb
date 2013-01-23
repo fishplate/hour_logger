@@ -49,10 +49,10 @@
             <ul class="nav">
               <% if current_user %>
                 <li><%= link_to "My Hours", user_hours_path %></li>
-                <li><%= link_to "My Account", "#" %></li>
               <% end %>
             </ul>
             <ul class="nav pull-right">
+              <li><%= link_to "My Account", edit_user_registration_path  if current_user %></li>
               <li><%= display_login  %></li>
               <li><%= link_to 'Sign up', new_user_registration_path, :class => "links" if !current_user %></li>
             </ul>
