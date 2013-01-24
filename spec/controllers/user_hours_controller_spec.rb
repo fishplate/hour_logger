@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe UserHoursController do
 
-  describe "with valid login" do
+  describe "with valid login and mentor assigned" do
     before(:each) do
       sign_in given_user
+      given_user.update_attributes(mentor_id: given_mentor.id)
     end
 
     it "should get index" do
@@ -58,6 +59,31 @@ describe UserHoursController do
       delete :destroy, :id => @user_hour.id
       response.should redirect_to user_hours_path
       given_user.user_hours.count.should == 0
+    end
+  end
+
+  describe "with valid login but no mentor or details assigned" do
+    before(:each) do
+      sign_in given_user
+    end
+
+    it "should redirect to root path if no mentor or details" do
+      get :index
+      flash[:alert].should == "please fill in your details in the account section before logging hours."
+      response.should redirect_to root_path
+    end
+
+    it "should redirect to root path if not all details filled in" do
+      given_user.update_attributes(mentor_id: given_mentor.id, last_name: "", first_name: nil)
+      get :index
+      flash[:alert].should == "please fill in your details in the account section before logging hours."
+      response.should redirect_to root_path
+    end
+
+    it "should redirect to root path if no mentor" do
+      get :index
+      flash[:alert].should == "please fill in your details in the account section before logging hours."
+      response.should redirect_to root_path
     end
   end
 
