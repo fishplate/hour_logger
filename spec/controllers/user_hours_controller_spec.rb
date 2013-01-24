@@ -14,7 +14,7 @@ describe UserHoursController do
     end
 
     it "should create user hours and new placement" do
-      post :create, {user_hours: {hours: 1.5, date_occurred: Date.today}, placement: {name: "some_name", area: "some_area"}}
+      post :create, {user_hour: {hours: 1.5, date_occurred: Date.today}, placement: {name: "some_name", area: "some_area"}}
       flash[:notice].should == "hours have been logged"
       given_user.user_hours.count.should == 1
       Placement.count.should == 1
@@ -23,7 +23,7 @@ describe UserHoursController do
     end
 
     it "should create user hours and placement should be existing" do
-      post :create, {user_hours: {hours: 1.5, date_occurred: Date.today}, placement: {name: given_placement.name, area: given_placement.area}}
+      post :create, {user_hour: {hours: 1.5, date_occurred: Date.today}, placement: {name: given_placement.name, area: given_placement.area}}
       flash[:notice].should == "hours have been logged"
       given_user.user_hours.count.should == 1
       Placement.count.should == 1
@@ -32,12 +32,20 @@ describe UserHoursController do
     end
 
     it "should create user hours and new placement if new name" do
-      post :create, {user_hours: {hours: 1.5, date_occurred: Date.today}, placement: {name: "new_name", area: given_placement.area}}
+      post :create, {user_hour: {hours: 1.5, date_occurred: Date.today}, placement: {name: "new_name", area: given_placement.area}}
       flash[:notice].should == "hours have been logged"
       given_user.user_hours.count.should == 1
       Placement.count.should == 2
       given_user.user_hours.first.placement.should == Placement.last
       response.should redirect_to user_hours_path
+    end
+
+    it "should not create user hours if missing placement" do
+      post :create, {user_hour: {hours: 1.5, date_occurred: Date.today}, placement: {name: "", area: ""}}
+      flash[:alert].should == "there was a problem with logging your hours"
+      given_user.user_hours.count.should == 0
+      Placement.count.should == 0
+      response.should render_template :new
     end
 
     it "should get new view" do
