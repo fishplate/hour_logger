@@ -22,6 +22,21 @@ class UserHoursController < ApplicationController
     end
   end
 
+  def edit
+    @user_hour = current_user.user_hours.find(params[:id])
+  end
+
+  def update
+    @user_hour = current_user.user_hours.find(params[:id])
+    placement = Placement.find_or_create_by_name_and_area(params[:placement][:name], params[:placement][:area])
+    new_params = params[:user_hour].merge!({placement_id: placement.id})
+    if @user_hour.update_attributes(new_params)
+      redirect_to user_hours_path, :notice => "hours updated"
+    else
+      render :edit
+    end
+  end
+
   def destroy
     user_hour = current_user.user_hours.find(params[:id])
     if user_hour.destroy

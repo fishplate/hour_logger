@@ -53,6 +53,16 @@ describe UserHoursController do
       response.should be_success
     end
 
+    it "should get be able to edit hours" do
+      get :edit, id: given_hour(given_user, given_placement.id).id
+      response.should be_success
+    end
+
+    it "should be able to update hours" do
+      put :update, {id: given_hour(given_user, given_placement.id).id, user_hour: {}, placement: {name: given_placement.name, area: given_placement.area}}
+      response.should redirect_to user_hours_path
+    end
+
     it "should be able to destroy a user_hour" do
       @user_hour = given_user.user_hours.create!(hours: 1.5, date_occurred: Date.today, placement_id: given_placement.id)
       delete :destroy, :id => @user_hour.id

@@ -17,7 +17,7 @@
         <td><%= user_hour.placement.name %></td>
         <td><%= user_hour.placement.area %></td>
         <td><%= user_hour.hours %></td>
-        <td><%= link_to "edit", user_hour_path(user_hour.id), :class => "btn btn-warning" %>
+        <td><%= link_to "edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning" %>
         <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn" %>
       </tr>
     <% end %>
