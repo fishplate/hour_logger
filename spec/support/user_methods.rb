@@ -1,5 +1,5 @@
 def given_user
-  @user ||= User.create(user_params)
+  @user ||= User.create!(user_params)
 end
 
 def user_params
