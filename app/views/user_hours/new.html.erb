@@ -1,11 +1,22 @@
+<% if @user_hour.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <h2><%= pluralize(@user_hour.errors.count, "error") %> prohibited this model from being saved:</h2>
+    <ul>
+      <% @user_hour.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <h1>Add your hours </h1>
 <%= form_for @user_hour do |f| %>
   <%= f.label :date_occurred %>
   <%= f.date_select(:date_occurred, :start_year => Date.today.years_ago(1).year, :order => [:day, :month, :year]) %>
   <%= label_tag "Placement name" %>
-  <%= text_field_tag "placement[name]", nil %>
+  <%= autocomplete_field_tag "placement[name]", nil, user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
   <%= label_tag "Placement area" %>
-  <%= text_field_tag "placement[area]", nil %>
+  <%= text_field_tag "placement[area]", nil, :id => "form_area" %>
   <%= f.label :hours %>
   <%= f.text_field :hours, :placeholder => "1.5" %><br />
   <%= link_to "cancel", :back, :class => "btn" %>

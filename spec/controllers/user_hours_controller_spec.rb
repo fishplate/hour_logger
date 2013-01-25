@@ -43,7 +43,6 @@ describe UserHoursController do
 
     it "should not create user hours if missing placement" do
       post :create, {user_hour: {hours: 1.5, date_occurred: Date.today}, placement: {name: "", area: ""}}
-      flash[:alert].should == "there was a problem with logging your hours"
       given_user.user_hours.count.should == 0
       Placement.count.should == 0
       response.should render_template :new

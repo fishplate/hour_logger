@@ -1,6 +1,7 @@
 class UserHoursController < ApplicationController
   before_filter :authenticate_user!
   before_filter :check_details
+  autocomplete :placement, :name, :extra_data => [:area]
 
   def index
     @user_hours = current_user.user_hours
@@ -17,7 +18,6 @@ class UserHoursController < ApplicationController
     if @user_hour.save
       redirect_to user_hours_path, :notice => "hours have been logged"
     else
-      flash[:alert] = "there was a problem with logging your hours"
       render :new
     end
   end
