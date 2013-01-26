@@ -24,6 +24,8 @@ class UserHoursController < ApplicationController
 
   def edit
     @user_hour = current_user.user_hours.find(params[:id])
+    @placement_name = @user_hour.placement.name
+    @placement_area = @user_hour.placement.area
   end
 
   def update
@@ -33,6 +35,10 @@ class UserHoursController < ApplicationController
     if @user_hour.update_attributes(new_params)
       redirect_to user_hours_path, :notice => "hours updated"
     else
+      if @user_hour.placement.nil?
+        @placement_name = nil
+        @placement_area = nil
+      end
       render :edit
     end
   end

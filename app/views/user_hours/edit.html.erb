@@ -14,9 +14,9 @@
   <%= f.label :date_occurred %>
   <%= f.date_select(:date_occurred, :start_year => Date.today.years_ago(1).year, :order => [:day, :month, :year]) %>
   <%= label_tag "Placement name" %>
-  <%= autocomplete_field_tag "placement[name]", @user_hour.placement.name, user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
+  <%= autocomplete_field_tag "placement[name]", @placement_name, user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
   <%= label_tag "Placement area" %>
-  <%= text_field_tag "placement[area]", @user_hour.placement.area, :id => "form_area" %>
+  <%= text_field_tag "placement[area]", @placement_area, :id => "form_area" %>
   <%= f.label :hours %>
   <%= f.text_field :hours, :placeholder => "1.5" %><br />
   <%= link_to "cancel", user_hours_path, :class => "btn" %>
