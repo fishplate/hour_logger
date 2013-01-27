@@ -4,7 +4,7 @@ class UserHoursController < ApplicationController
   autocomplete :placement, :name, :extra_data => [:area]
 
   def index
-    @user_hours = current_user.user_hours
+    @user_hours = current_user.user_hours.get_date
   end
 
   def new

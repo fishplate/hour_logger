@@ -2,7 +2,7 @@
   <%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
 </div>
 
-<h1> Your User hours </h1>
+<h1> Your User hours for <%= Date.today.strftime('%b, %Y') %></h1>
 <% unless @user_hours.empty? %>
 <!-- Render user hours in partial -->
   <table class="table">
@@ -23,5 +23,7 @@
     <% end %>
   </table>
 <% else %>
-  <p>Hey, you don't seem to have any hours logged?</p>
+  <p>Hey, you don't seem to have any hours logged for this month?</p>
 <% end %>
+
+<%= link_to "Your Archived Hours", "#", :class => "btn" %>

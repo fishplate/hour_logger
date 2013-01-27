@@ -22,5 +22,17 @@ describe UserHour do
       UserHour.count.should == 0
     end
 
+    it "should be able to find correct dates default this month" do
+      given_user.user_hours.create!(@user_hour_params)
+      given_user.user_hours.get_date.should == given_user.user_hours.to_a
+    end
+
+    it "should be able to find correct dates when arg is provided" do
+      given_user.user_hours.create!(@user_hour_params)
+      given_user.user_hours.create!(hours: 1.5, placement_id: given_placement.id, date_occurred: Date.parse("04/02/2013"))
+      given_user.user_hours.get_date("01/02/2013").count.should == 1
+      given_user.user_hours.get_date("01/02/2013").last.date_occurred.should == Date.parse("04/02/2013")
+    end
+
   end
 end
