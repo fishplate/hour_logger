@@ -10,7 +10,7 @@ describe UserHoursController do
 
     it "should get index" do
       get :index
-      assigns(:user_hours).should == given_user.user_hours
+      assigns(:user_hours).should == given_user.user_hours.get_date
       response.should be_success
     end
 
