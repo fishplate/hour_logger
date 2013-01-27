@@ -3,6 +3,7 @@ HourLogger::Application.routes.draw do
   devise_for :users
 
   resources :user_hours
+  resources :archives
 
   root :to => 'mains#index'
 
