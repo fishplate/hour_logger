@@ -12,7 +12,7 @@
 <h1>Add your hours </h1>
 <%= form_for @user_hour do |f| %>
   <%= f.label :date_occurred, "Select Day" %>
-  <%= f.date_select(:date_occurred, :start_year => Date.today.year, :end_year => Date.today.year, :order => [:day, :month]) %>
+  <%= f.select(:date_occurred, options_for_select(@day_options))%>
   <%= label_tag "Placement name" %>
   <%= autocomplete_field_tag "placement[name]", nil, user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
   <%= label_tag "Placement area" %>
