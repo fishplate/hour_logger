@@ -1,14 +1,15 @@
-<div class="well">
-  <%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
-</div>
-
-<h1> Your User hours for <%= Date.today.strftime('%b, %Y') %></h1>
+<% unless @archived %>
+  <div class="well">
+    <%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
+  </div>
+<% end %>
+<h1> Your <% if @archived %>Archived <% end %>User hours for <%= @user_hours.first.date_occurred.strftime('%b, %Y') %></h1>
 <% unless @user_hours.empty? %>
 <!-- Render user hours in partial -->
   <table class="table">
     <thread>
       <tr>
-      <th>Date</th><th>Placement Name</th><th>Placement Area</th><th>Hours</th><th>Edit</th><th>Remove</th>
+      <th>Date</th><th>Placement Name</th><th>Placement Area</th><th>Hours</th><th>Status</th><% unless @archived %><th>Edit</th><th>Remove</th><% end %>
       </tr>
     </thread>
     <% @user_hours.each do |user_hour| %>
@@ -17,8 +18,11 @@
         <td><%= user_hour.placement.name %></td>
         <td><%= user_hour.placement.area %></td>
         <td><%= user_hour.hours %></td>
-        <td><%= link_to "edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning" %>
-        <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn" %>
+        <td><b><%= confirmation(user_hour.confirmed) %></b></td>
+        <% unless @archived %>
+          <td><%= link_to "edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning"%></td>
+          <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn" %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

@@ -4,7 +4,15 @@ class UserHoursController < ApplicationController
   autocomplete :placement, :name, :extra_data => [:area]
 
   def index
-    @user_hours = current_user.user_hours.get_date
+    month = params[:month]
+    year = params[:year]
+    if [month, year].include?(nil)
+      @archived = false
+      @user_hours = current_user.user_hours.get_date
+    else
+      @archived = true
+      @user_hours = current_user.user_hours.archived.get_date("01/#{month}/#{year}")
+    end
   end
 
   def new
