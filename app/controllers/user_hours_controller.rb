@@ -31,6 +31,7 @@ class UserHoursController < ApplicationController
     if @user_hour.save
       redirect_to user_hours_path, :notice => "hours have been logged"
     else
+      @day_options = sort_days(current_user.user_hours.get_date)
       render :new
     end
   end
