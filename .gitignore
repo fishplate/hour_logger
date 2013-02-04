@@ -12,6 +12,20 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
+/tmp/*
 .DS_Store
 /config/initializers/secret_token_prod.rb
+
+
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+/vendor/bundle
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
