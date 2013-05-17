@@ -1,11 +1,14 @@
 <% unless @archived %>
   <div class="well">
     <%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
+    <%= link_to "Your Archived Hours", archives_path, :class => "btn" %>
   </div>
 <% end %>
-<h1> Your <% if @archived %>Archived <% end %>User hours for <%= @user_hours.first.date_occurred.strftime('%b, %Y') %></h1>
-<% unless @user_hours.empty? %>
-<!-- Render user hours in partial -->
+<% if @user_hours.empty? %>
+  <p>You don't seem to have any hours logged for this month?</p>
+<% else %>
+  <h1> Your <% if @archived %>Archived <% end %>User hours for <%= @user_hours.first.date_occurred.strftime('%b, %Y') %></h1>
+  <!-- Render user hours in partial -->
   <table class="table">
     <thread>
       <tr>
@@ -26,8 +29,4 @@
       </tr>
     <% end %>
   </table>
-<% else %>
-  <p>Hey, you don't seem to have any hours logged for this month?</p>
 <% end %>
-
-<%= link_to "Your Archived Hours", archives_path, :class => "btn" %>

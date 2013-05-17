@@ -1,8 +1,9 @@
 <h1> Your Archived Months </h1>
 <% @dates.each_pair do |k,v| %>
-<div class="well">
-  <h2><%= k %></h2>
-  <% v.sort.map do |m| %>
-    <%= link_to m.strftime("%b"), user_hours_path(:year => k, :month => m), :class => "btn" %>
-  <% end %>
+  <div class="well">
+    <h2><%= k %></h2>
+    <% v.sort.map do |m| %>
+      <%= link_to m.strftime("%b"), user_hours_path(:year => k, :month => m), :class => "btn" %>
+    <% end %>
+  </div>
 <% end %>

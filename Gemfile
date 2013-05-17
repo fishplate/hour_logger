@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'json'
 gem 'jquery-rails'
@@ -22,4 +22,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'brakeman'
+  gem 'cane'
 end

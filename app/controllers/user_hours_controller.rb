@@ -3,6 +3,8 @@ class UserHoursController < ApplicationController
   before_filter :check_details
   autocomplete :placement, :name, :extra_data => [:area]
 
+# Not sure why I'm doing this crazines 
+# - could just have an index for archived?
   def index
     month = params[:month]
     year = params[:year]
