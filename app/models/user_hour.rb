@@ -14,7 +14,7 @@ class UserHour < ActiveRecord::Base
 
   def self.get_date(date_arg = nil)
     desired_date = date_arg.nil? ? Date.today : Date.parse(date_arg)
-    self.where(["MONTH(date_occurred) = ? AND YEAR(date_occurred) = ?", desired_date.month, desired_date.year])
+    self.where(["EXTRACT(MONTH from date_occurred) = ? AND EXTRACT(YEAR from date_occurred) = ?", desired_date.month, desired_date.year])
   end
 
   def self.archived
