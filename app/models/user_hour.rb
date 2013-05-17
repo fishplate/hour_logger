@@ -1,5 +1,5 @@
 class UserHour < ActiveRecord::Base
-  attr_accessible :hours, :placement_id, :date_occurred
+  attr_accessible :hours, :placement_id, :date_occurred, :archived, :confirmed
 
   validates_presence_of :placement_id, :hours, :date_occurred
   validates_uniqueness_of :date_occurred
@@ -15,6 +15,10 @@ class UserHour < ActiveRecord::Base
   def self.get_date(date_arg = nil)
     desired_date = date_arg.nil? ? Date.today : Date.parse(date_arg)
     self.where(["MONTH(date_occurred) = ? AND YEAR(date_occurred) = ?", desired_date.month, desired_date.year])
+  end
+
+  def self.archived
+    self.where(archived: true)
   end
 
 private

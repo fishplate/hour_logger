@@ -3,8 +3,18 @@ class UserHoursController < ApplicationController
   before_filter :check_details
   autocomplete :placement, :name, :extra_data => [:area]
 
+# Not sure why I'm doing this crazines 
+# - could just have an index for archived?
   def index
-    @user_hours = current_user.user_hours.get_date
+    month = params[:month]
+    year = params[:year]
+    if [month, year].include?(nil)
+      @archived = false
+      @user_hours = current_user.user_hours.get_date
+    else
+      @archived = true
+      @user_hours = current_user.user_hours.archived.get_date("01/#{month}/#{year}")
+    end
   end
 
   def new
@@ -23,6 +33,7 @@ class UserHoursController < ApplicationController
     if @user_hour.save
       redirect_to user_hours_path, :notice => "hours have been logged"
     else
+      @day_options = sort_days(current_user.user_hours.get_date)
       render :new
     end
   end

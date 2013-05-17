@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119193047) do
+ActiveRecord::Schema.define(:version => 20130130120705) do
 
   create_table "mentors", :force => true do |t|
     t.string   "first_name"
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(:version => 20130119193047) do
     t.float    "hours"
     t.integer  "placement_id"
     t.date     "date_occurred"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "archived",      :default => false
+    t.boolean  "confirmed",     :default => false
   end
 
   create_table "users", :force => true do |t|

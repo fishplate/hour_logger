@@ -9,7 +9,7 @@
     </ul>
   </div>
 <% end %>
-<h1>Add your hours </h1>
+<h1>Add your hours for <%= Date.today.strftime("%b %Y") %></h1>
 <%= form_for @user_hour do |f| %>
   <%= f.label :date_occurred, "Select Day" %>
   <%= f.select(:date_occurred, options_for_select(@day_options))%>
