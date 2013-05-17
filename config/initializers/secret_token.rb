@@ -6,4 +6,4 @@
 # no regular words or you'll be exposed to dictionary attacks.
 string = ""
 30.times {string += (("a".."z").to_a << ("1".."30").to_a).flatten.sample}
-HourLogger::Application.config.secret_token = string
+HourLogger::Application.config.secret_token = ENV['SECRET_KEY'] || string
