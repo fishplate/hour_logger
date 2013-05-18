@@ -3,6 +3,5 @@ class MentorsController < ApplicationController
 
   def index
     @users = current_user.review_users
-    @user_hours = current_user.review_hours
   end
 end
