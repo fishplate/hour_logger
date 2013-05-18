@@ -12,4 +12,23 @@ class User < ActiveRecord::Base
   has_many :user_hours, :dependent => :destroy
   belongs_to :mentor
 
+  def make_mentor
+    required = [self.first_name, self.last_name, self.email]
+    required.each {|x| return if x.nil?}
+    @mentor = Mentor.new(
+      first_name: self.first_name,
+      last_name: self.last_name,
+      email: self.email
+      )
+    if @mentor.save
+      self.is_mentor = true
+      self.save
+    end
+  end
+
+  def review_hours
+    return unless self.is_mentor
+    mentor = Mentor.find_by_email(self.email)
+    mentor.user_hours
+  end
 end

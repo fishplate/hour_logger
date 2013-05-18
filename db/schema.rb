@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130120705) do
+ActiveRecord::Schema.define(:version => 20130518210927) do
 
   create_table "mentors", :force => true do |t|
     t.string   "first_name"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20130130120705) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(:version => 20130130120705) do
     t.date     "date_of_birth"
     t.string   "contact_number"
     t.integer  "mentor_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.boolean  "is_mentor",              :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

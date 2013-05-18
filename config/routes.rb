@@ -4,6 +4,7 @@ HourLogger::Application.routes.draw do
 
   resources :user_hours
   resources :archives
+  resources :mentors
 
   root :to => 'mains#index'
 

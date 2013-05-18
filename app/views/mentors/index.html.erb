@@ -1,0 +1,11 @@
+<% if !@user_hours.empty? %>
+  <% @user_hours.each do |hour| %>
+    <div class="well">
+      <li><%= hour.hours %></li>
+    </div>
+  <% end %>
+<% else %>
+  <div class="well">
+    <p> No User hours to review </p>
+  </div>
+<% end %>
