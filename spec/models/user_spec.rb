@@ -62,5 +62,15 @@ describe User do
         )
       @user.review_hours.should == @norm_user.user_hours
     end
+
+    it "should be able to review users if a mentor" do
+      @user.make_mentor
+      @norm_user = User.create!(
+        email: "test@example.com",
+        password: "password",
+        mentor_id: Mentor.find_by_email(@user.email).id
+        )
+      @user.review_users.first.should == @norm_user
+    end
   end
 end

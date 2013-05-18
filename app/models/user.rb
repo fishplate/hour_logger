@@ -31,4 +31,10 @@ class User < ActiveRecord::Base
     mentor = Mentor.find_by_email(self.email)
     mentor.user_hours
   end
+
+  def review_users
+    return unless self.is_mentor
+    mentor = Mentor.find_by_email(self.email)
+    mentor.users
+  end
 end

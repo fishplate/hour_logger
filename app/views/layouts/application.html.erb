@@ -54,7 +54,7 @@
               <% end %>
             </ul>
             <ul class="nav pull-right">
-              <% unless current_user.is_mentor %>
+              <% unless current_user && current_user.is_mentor %>
                 <li><%= link_to "My Account", edit_user_registration_path  if current_user %></li>
               <% end %>
               <li><%= display_login  %></li>
