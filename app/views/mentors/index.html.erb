@@ -1,19 +1,10 @@
-<h1>Approve Hours</h1>
+<h1>Approve Users</h1>
 <% if !@users.empty? %>
   <% @users.each do |user| %>
-    <h2><%= user.first_name %> <%= user.last_name %></h2>
-    <% user.user_hours.each do |hour| %>
-      <div class="well">
-        <li><b>Name</b> : <%= hour.placement.name %></li>
-        <li><b>Area</b> : <%= hour.placement.area %></li>
-        <li><b>Hours</b> : <%= hour.hours %></li>
-        <!--This needs to use controller to approve hours -->
-        <%= link_to "approve", "#", :class => "btn btn-success" %>
-      </div>
-    <% end %>
+    <%=link_to "#{user.first_name} #{user.last_name}", mentor_path(user), :class => "btn" %>
   <% end %>
 <% else %>
   <div class="well">
-    <p> No User hours to review </p>
+    <p> No Users to review </p>
   </div>
 <% end %>
