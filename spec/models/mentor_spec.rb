@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Mentor do
 
-  describe "with valid attributes" do
+  context "with valid attributes" do
     before(:each) do
       @mentor = Mentor.new(mentor_params)
     end
@@ -22,6 +22,32 @@ describe Mentor do
       @mentor.destroy
       Mentor.count.should == 0
     end
+  end
+
+  context "mentor and user_hours" do
+
+    before(:each) do
+      @mentor = Mentor.create!(mentor_params)
+      @user = User.create!(
+        email: "test@example.com",
+        password: "password",
+        mentor_id: @mentor.id
+        )
+    end
+
+    it "should be able to return users" do
+      @mentor.users.count.should == 1
+    end
+
+    it "should be able to see user hours" do
+      @user.user_hours.create!(
+        hours: 1.5,
+        placement_id: given_placement.id,
+        date_occurred: Date.today
+        )
+       @mentor.user_hours.count.should == 1
+    end
+
   end
 
 end

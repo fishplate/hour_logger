@@ -48,11 +48,15 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <% if current_user %>
-                <li><%= link_to "My Hours", user_hours_path %></li>
+                <% unless current_user.is_mentor %>
+                  <li><%= link_to "My Hours", user_hours_path %></li>
+                <% end %>
               <% end %>
             </ul>
             <ul class="nav pull-right">
-              <li><%= link_to "My Account", edit_user_registration_path  if current_user %></li>
+              <% unless current_user && current_user.is_mentor %>
+                <li><%= link_to "My Account", edit_user_registration_path  if current_user %></li>
+              <% end %>
               <li><%= display_login  %></li>
               <li><%= link_to 'Sign up', new_user_registration_path, :class => "links" if !current_user %></li>
             </ul>

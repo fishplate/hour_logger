@@ -14,9 +14,9 @@
   <%= f.label :date_occurred, "Select Day" %>
   <%= f.select(:date_occurred, options_for_select(@day_options))%>
   <%= label_tag "Placement name" %>
-  <%= autocomplete_field_tag "placement[name]", nil, user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
+  <%= autocomplete_field_tag "placement[name]", placement_name(@placement), user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
   <%= label_tag "Placement area" %>
-  <%= text_field_tag "placement[area]", nil, :id => "form_area" %>
+  <%= text_field_tag "placement[area]", placement_area(@placement), :id => "form_area" %>
   <%= f.label :hours %>
   <%= f.text_field :hours, :placeholder => "1.5" %><br />
   <%= link_to "cancel", :back, :class => "btn" %>
