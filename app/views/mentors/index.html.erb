@@ -1,0 +1,10 @@
+<h1>Approve Users</h1>
+<% if !@users.empty? %>
+  <% @users.each do |user| %>
+    <%=link_to "#{user.first_name} #{user.last_name}", mentor_path(user), :class => "btn " + hours_present?(user) %>
+  <% end %>
+<% else %>
+  <div class="well">
+    <p> No Users to review </p>
+  </div>
+<% end %>

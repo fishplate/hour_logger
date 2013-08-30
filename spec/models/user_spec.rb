@@ -32,4 +32,45 @@ describe User do
 
   end
 
+  context "User as a mentor" do
+    before(:each) do
+      @user = User.create!(user_params)
+    end
+    it "should be able to create a mentor from user" do
+      @user.make_mentor.should == true
+      Mentor.count.should == 1
+      Mentor.first.first_name.should == @user.first_name
+    end
+
+    it "should not be able to create mentor if no attributes" do
+      @user.update_attributes(first_name: nil)
+      @user.make_mentor.should == nil
+      Mentor.count.should == 0
+    end
+
+    it "should be able to review hours if a mentor" do
+      @user.make_mentor
+      @norm_user = User.create!(
+        email: "test@example.com",
+        password: "password",
+        mentor_id: Mentor.find_by_email(@user.email).id
+        )
+      @norm_user.user_hours.create!(
+        hours: 1.5,
+        placement_id: given_placement.id,
+        date_occurred: Date.today
+        )
+      @user.review_hours.should == @norm_user.user_hours
+    end
+
+    it "should be able to review users if a mentor" do
+      @user.make_mentor
+      @norm_user = User.create!(
+        email: "test@example.com",
+        password: "password",
+        mentor_id: Mentor.find_by_email(@user.email).id
+        )
+      @user.review_users.first.should == @norm_user
+    end
+  end
 end

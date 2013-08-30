@@ -26,9 +26,9 @@ class UserHoursController < ApplicationController
     day = params[:user_hour][:date_occurred].to_s
     month = Date.today.month
     year = Date.today.year
-    placement = Placement.find_or_create_by_name_and_area(params[:placement][:name], params[:placement][:area])
+    @placement = Placement.find_or_create_by_name_and_area(params[:placement][:name], params[:placement][:area])
     @user_hour = current_user.user_hours.new(params[:user_hour])
-    @user_hour.placement_id = placement.id
+    @user_hour.placement_id = @placement.id
     @user_hour.date_occurred = Date.parse("#{day}/#{month}/#{year}")
     if @user_hour.save
       redirect_to user_hours_path, :notice => "hours have been logged"
