@@ -7,6 +7,13 @@ class MentorsController < ApplicationController
 
   def show
     user = params[:id]
-    @user = current_user.review_users.find(user)
+    @user = user_hours_review(user)
+  end
+
+private
+
+  def user_hours_review(user)
+    return unless user
+    current_user.review_users.find(user)
   end
 end

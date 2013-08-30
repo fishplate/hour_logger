@@ -1,13 +1,17 @@
 <h1>Approve User Hours</h1>
 <h2><%= @user.first_name %> <%= @user.last_name %></h2>
 <% if !@user.user_hours.empty? %>
-  <% @user.user_hours.each do |hour| %>
+  <% ordered_hours(@user.user_hours).each do |hour| %>
     <div class="well">
       <li><b>Name</b> : <%= hour.placement.name %></li>
       <li><b>Area</b> : <%= hour.placement.area %></li>
       <li><b>Hours</b> : <%= hour.hours %></li>
       <!--This needs to use controller to approve hours -->
-      <%= link_to "approve", "#", :class => "btn btn-success" %>
+      <% if aproved?(hour) %>
+        <button class="btn btn-disabled" disabled>Aprroved</button>
+      <% else %>
+        <%= link_to "Approve", "#", :class => "btn " + confirmed_hours?(hour) %>
+      <% end %>
     </div>
   <% end %>
 <% else %>
