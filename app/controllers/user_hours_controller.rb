@@ -11,9 +11,11 @@ class UserHoursController < ApplicationController
     if [month, year].include?(nil)
       @archived = false
       @user_hours = current_user.user_hours.get_date
+      @total = calculate_totals(@user_hours)
     else
       @archived = true
       @user_hours = current_user.user_hours.archived.get_date("01/#{month}/#{year}")
+      @total = calculate_totals(@user_hours)
     end
   end
 
@@ -91,6 +93,13 @@ private
     days = Array(1..days_month)
     days_excluded.each {|x| days.delete(x)}
     days
+  end
+
+  def calculate_totals(hours)
+    return unless hours
+    unless hours.empty?
+      hours.map {|a| a.hours}.sum
+    end
   end
 
 end
