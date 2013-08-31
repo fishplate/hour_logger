@@ -1,0 +1,76 @@
+/* Data block header */
+
+.data-block {
+  position: relative;
+  margin-bottom: 20px;
+  background: #ffffff;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+.data-block header {
+  padding: 15px 20px;
+  background: #7f8c8d;
+  *zoom: 1;
+  -webkit-border-top-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  border-top-right-radius: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topleft: 6px;
+  border-top-left-radius: 6px;
+}
+.data-block header:before,
+.data-block header:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.data-block header:after {
+  clear: both;
+}
+.data-block header h2 {
+  margin: 0;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 17.5px;
+  line-height: 28px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.data-block section {
+  padding: 20px;
+}
+
+ .selectBox .control-label {
+  float: left;
+  width: 60px;
+  padding-top: 5px;
+}
+
+.edit_user .control-label {
+  float: left;
+  width: 120px;
+  padding-top: 5px;
+}
+
+.changePassword .control-label {
+  float: left;
+  width: 120px;
+  padding-top: 5px;
+}
+
+.edit_user .control-label.radio {
+	width:60px;
+}
+
+.edit_user .controls {
+  *display: inline-block;
+  *padding-left: 20px;
+  margin-left: 115px;
+  *margin-left: 0;
+}
+
+#user_gender_female {
+	float:left;
+}
