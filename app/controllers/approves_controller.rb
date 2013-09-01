@@ -1,5 +1,5 @@
 class ApprovesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :check_user_mentor
 
   def create
     mentor = User.find(params[:id])

@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :check_user_mentor
 
   def index
     @users = current_user.review_users.order(:last_name)
@@ -19,4 +19,5 @@ private
     return unless user
     current_user.review_users.find(user)
   end
+
 end
