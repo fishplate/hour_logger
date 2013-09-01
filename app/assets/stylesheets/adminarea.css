@@ -48,13 +48,8 @@
   padding-top: 5px;
 }
 
-.edit_user .control-label {
-  float: left;
-  width: 120px;
-  padding-top: 5px;
-}
 
-.changePassword .control-label {
+.edit_user .control-label, .changePassword .control-label, .logHours .control-label {
   float: left;
   width: 120px;
   padding-top: 5px;
@@ -64,7 +59,7 @@
 	width:60px;
 }
 
-.edit_user .controls {
+.edit_user .controls, .logHours .controls{
   *display: inline-block;
   *padding-left: 20px;
   margin-left: 115px;
