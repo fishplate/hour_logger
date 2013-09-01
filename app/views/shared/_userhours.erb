@@ -1,0 +1,40 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+       <th>Date</th>
+       <th>Placement Name</th>
+       <th>Placement Area</th>
+       <th>Hours</th>
+       <th>Status</th>
+        <% unless @archived %>
+         <th>Edit</th>
+         <th>Remove</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% @user_hours.each do |user_hour| %>
+      <tr>
+        <td><%= link_to user_hour.date_occurred, user_hour_path(user_hour.id) %></td>
+        <td><%= user_hour.placement.name %></td>
+        <td><%= user_hour.placement.area %></td>
+        <td><%= user_hour.hours %></td>
+        <td><b><%= confirmation(user_hour.confirmed) %></b></td>
+        <% unless @archived %>
+          <td><%= link_to "edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning"%></td>
+          <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn btn-small" %></td>
+        <% end %>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <table>
+    <thread>
+      <tr>
+      <th>Totals Hours</th>
+      </tr>
+    </thread>
+    <tr>
+      <td><%=@total%></td>
+    </tr>
+  </table>

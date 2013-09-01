@@ -1,11 +1,36 @@
-<div class="well">
-  Lorem ipsum dolor sit amet, te verear deleniti qui. Quo solet omittantur eu, quot similique ei duo. Quo cu porro apeirian liberavisse, tantas fierent scriptorem eum ad. Ut novum platonem definiebas vis, mei in assum error iuvaret, ei vidit assum cum. Assum possit omittantur eos ad, ex diam placerat invenire quo, ut cum suas albucius.
+<div class="container">
+ <div class="row">
+  <div class="span8 offset2">
+   <div id="login-wrapper">
+ <%= form_for(resource, :as => resource_name, :html => {class:"form login-form"}, :url => session_path(resource_name)) do |f| %>
+ <legend>Sign in to <span class="blue">HourLogger</span></legend>
+  <div class="inner-login-wrapper">
+   <%= f.label :email %>
+   <%= f.email_field :email, :autofocus => true %>
 
-  Eos nibh delicatissimi ei, mei libris delenit id, no est tincidunt dissentiunt. Vim in mazim suscipiantur. Ne his amet persequeris. Sit summo senserit referrentur at, sint ancillae per at. Veri malorum ius te, pro prima harum mollis ea.
+   <%= f.label :password %>
+   <%= f.password_field :password %>
+    <div class="footer">
+   <% if devise_mapping.rememberable? -%>
+    <%= f.check_box :remember_me %> <%= f.label :remember_me, :class => 'checkbox inline' %>
+   <% end -%>
+   <br>
+   <br>
+   <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+   <% end -%>
+   </div>
+   <br>
+    <%= f.submit "Sign in", :class => 'btn btn-success' %>
+   </div><!--/inner-login-wrapper-->
+  <% end %>
+   </div><!--/login wrapper -->
+  </div>
+ </div><!--row -->
+</div><!--/container -->
 
-  Indoctum repudiare suscipiantur ut nec, ex sit tale facilisi. Facete posidonium pro in, cu inani nostrum scriptorem mel. Scripta corpora intellegam mei ne, vix et veritus omnesque assueverit, in eam sint adhuc bonorum. Per an autem erroribus definitionem. Eos in impetus ornatus qualisque, mea accumsan sadipscing cu.
+<footer class="white">
+      Don't have an account yet? <%= link_to 'Register', new_user_registration_path, :class => "btn btn-black" if !current_user %>
+    </footer>
 
-  Noluisse quaerendum id vim. In nibh meliore epicurei mel, mei lorem epicuri ei, eu his corpora epicuri. Congue voluptaria no vis, prima tollit libris mel no. Sed te ferri putent, vel ex falli maiorum argumentum.
 
-  Ne eros facer nec, sea debet mediocrem an, modo habeo id his. Possit labitur vis ei. Qui cu tollit option. Harum argumentum ei has, vel an agam molestiae dissentiet. Nobis affert an nam, id nec veri pericula, utinam consulatu qui ei. Atqui discere vulputate mei te. Dicam vivendum assueverit duo ne, quo zril dissentias ei, posse graecis usu te.
-</div>

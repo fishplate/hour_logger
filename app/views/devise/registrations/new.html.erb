@@ -1,18 +1,25 @@
-<h2>Sign up</h2>
+<div class="container">
+ <div class="row">
+  <div class="span8 offset2">
+ <div id="login-wrapper">
+ <%= form_for(resource, :as => resource_name, :html => {class:"form login-form"}, :url => registration_path(resource_name)) do |f| %>
+ <%= devise_error_messages! %>
+ <legend>Sign Up to <span class="blue">HourLogger</span></legend>
+  <div class="inner-login-wrapper">
+   <%= f.label :email %>
+   <%= f.email_field :email, :autofocus => true %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+   <%= f.label :password %>
+   <%= f.password_field :password %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+   <%= f.label :password_confirmation %>
+   <%= f.password_field :password_confirmation %>
+   <br>
+   <%= f.submit "Sign Up", :class => 'btn btn-success' %>
+   </div><!--/inner-login-wrapper-->
+  <% end %>
+ </div><!--/login wrapper -->
+</div>
+</div>
+</div><!--/container -->
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
