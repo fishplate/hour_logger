@@ -10,7 +10,7 @@
       <% if aproved?(hour) %>
         <button class="btn btn-disabled" disabled>Aprroved</button>
       <% else %>
-        <%= link_to "Approve", "#", :class => "btn " + confirmed_hours?(hour) %>
+        <%= link_to "Approve", approves_path(user: @user, hour: hour, id: current_user.id), :method => :post, :class => "btn " + confirmed_hours?(hour) %>
       <% end %>
     </div>
   <% end %>

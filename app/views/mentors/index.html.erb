@@ -1,8 +1,27 @@
 <h1>Approve Users</h1>
 <% if !@users.empty? %>
-  <% @users.each do |user| %>
-    <%=link_to "#{user.first_name} #{user.last_name}", mentor_path(user), :class => "btn " + hours_present?(user) %>
-  <% end %>
+  <div class="well">
+    <h3> To Review</h3>
+    <% if !@outstanding.empty? %>
+      <% @outstanding.each do |user| %>
+        <%=link_to "#{user.first_name} #{user.last_name}", mentor_path(user), :class => "btn " + hours_status?(user) %>
+      <% end %>
+    <% else %>
+      <p> No Outstanding User Hours </p>
+    <% end %>
+  </div>
+  <div class="well">
+    <h3> Reviewed</h3>
+    <% @processed.each do |user| %>
+      <%=link_to "#{user.first_name} #{user.last_name}", mentor_path(user), :class => "btn " + hours_status?(user) %>
+    <% end %>
+  </div>
+  <div class="well">
+    <h3> Users With No Hours</h3>
+    <% @no_hours.each do |user| %>
+      <button class="btn btn-disabled" disabled><%="#{user.first_name} #{user.last_name}"%></button>
+    <% end %>
+  </div>
 <% else %>
   <div class="well">
     <p> No Users to review </p>

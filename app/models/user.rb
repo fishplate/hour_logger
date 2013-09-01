@@ -37,4 +37,47 @@ class User < ActiveRecord::Base
     mentor = Mentor.find_by_email(self.email)
     mentor.users
   end
+
+  def hours_to_confirm
+    return unless self.is_mentor
+    result = review_users.map {|user| user if unconfirmed_hours?(user)}
+    result.delete_if {|x| x == nil}
+  end
+
+  def hours_processed
+    return unless self.is_mentor
+    result = review_users.map {|user| user if confirmed_hours(user)}
+    result.delete_if {|x| x == nil}
+  end
+
+  def users_no_hours
+    return unless self.is_mentor
+    result = review_users.map {|user| user if user.user_hours.empty?}
+    result.delete_if {|x| x == nil}
+  end
+
+private
+
+  def unconfirmed_hours?(user)
+    return unless user.user_hours
+    unconfirmed = user.user_hours.map {|hour| hour if !hour.confirmed}
+    unconfirmed.delete_if {|x| x == nil}
+    if unconfirmed.empty?
+      return false
+    else
+      return true
+    end
+  end
+
+  def confirmed_hours(user)
+    return unless user.user_hours
+    confirmed = user.user_hours.map {|hour| hour if hour.confirmed}
+    confirmed.delete_if {|x| x == nil}
+    if confirmed.empty?
+      return false
+    else
+      return true
+    end
+  end
+
 end

@@ -3,6 +3,9 @@ class MentorsController < ApplicationController
 
   def index
     @users = current_user.review_users.order(:last_name)
+    @outstanding = current_user.hours_to_confirm
+    @processed = current_user.hours_processed
+    @no_hours = current_user.users_no_hours
   end
 
   def show

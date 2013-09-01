@@ -5,6 +5,7 @@ HourLogger::Application.routes.draw do
   resources :user_hours
   resources :archives
   resources :mentors
+  resources :approves
 
   root :to => 'mains#index'
 
