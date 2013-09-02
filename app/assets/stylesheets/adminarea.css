@@ -9,6 +9,13 @@
   border-radius: 6px;
 }
 
+p.notice{
+  margin: 10px 10px 15px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 30px;
+}
+
 .data-block header {
   padding: 15px 20px;
   background: #7f8c8d;
@@ -126,4 +133,35 @@
   -webkit-border-bottom-right-radius: 4px;
   -moz-border-radius-bottomright: 4px;
   border-bottom-right-radius: 4px;
+}
+
+/* Admin Buttons */
+
+.data-block.widget-block {
+  display: block;
+  text-align: center;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+.data-block.widget-block section > span,
+.data-block.widget-block strong {
+  color: #7F8C8D;
+  display: block;
+  font-size: 47.6px;
+  line-height: 1;
+}
+.data-block.widget-block strong {
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+a.data-block.widget-block:hover {
+  text-decoration: none;
+  background: #7F8C8D;
+}
+a.data-block.widget-block:hover span,
+a.data-block.widget-block:hover strong {
+  color: #ffffff;
 }

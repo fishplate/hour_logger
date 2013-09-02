@@ -1,29 +1,61 @@
 <div class="container">
   <div class="row">
-    <div class="span12">
-      <% unless @archived %>
- 
-    <%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
-    <%= link_to "Your Archived Hours", archives_path, :class => "btn" %>
-  
-<% end %>
+    <% unless @archived %>
+    <a class="span3 data-block widget-block" href="#">
+      <section>
+       <span class="icon-time"></span>
+       <strong>Log Hours</strong>
+      </section>
+    </a>
 
-    </div>
+    <a class="span3 data-block widget-block" href="#">
+      <section>
+       <span class="icon-reorder"></span>
+       <strong>Archived Hours</strong>
+      </section>
+    </a>
+
+    <a class="span3 data-block widget-block" href="#">
+      <section>
+       <span class="icon-reorder"></span>
+       <strong>Another Option</strong>
+      </section>
+    </a>
+
+    <a class="span3 data-block widget-block" href="#">
+      <section>
+       <span class="icon-reorder"></span>
+       <strong>Another Option</strong>
+      </section>
+    </a>
+   <% end %>
+    
   </div>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="span12 data-block">
-      <header>
-       <% if @user_hours.empty? %>
-        <h2><span class="icon-th">&nbsp;You don't seem to have any hours logged for this month?</span></h2>
-       <% else %>
+      <% if @user_hours.empty? %>
+        <header>
+          <h2><span class="icon-th">&nbsp;Your Hours</span></h2>
+        </header>
+         <section class="tab-content">
+           <p class="notice">You don't seem to have any hours logged for this month?</p>
+         </section>
+      <% else %>
+       <header>
         <h2><span class="icon-th">&nbsp;Your <% if @archived %>Archived <% end %>User hours for <%= @user_hours.first.date_occurred.strftime('%b, %Y') %></span></h2>
       </header>
-  
+      
        <%= render 'shared/userhours' %>
+    
 <% end %>
   </div><!--/span12-->
  </div><!--/row-->
 </div><!--/container-->
+
+
+<%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
+<%= link_to "Your Archived Hours", archives_path, :class => "btn" %>
+  
