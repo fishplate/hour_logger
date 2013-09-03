@@ -1,37 +1,15 @@
 <div class="container">
   <div class="row">
-    <% unless @archived %>
-    <a class="span3 data-block widget-block" href="#">
-      <section>
-       <span class="icon-time"></span>
-       <strong>Log Hours</strong>
-      </section>
-    </a>
+    <div class="span4 mb20">
+      <% unless @archived %>
+       <%= link_to "Log your hours", new_user_hour_path, :class => "btn btn-success" %>
+       <%= link_to "Your Archived Hours", archives_path, :class => "btn btn-success" %>
+      <% end %>
+    </div>
 
-    <a class="span3 data-block widget-block" href="#">
-      <section>
-       <span class="icon-reorder"></span>
-       <strong>Archived Hours</strong>
-      </section>
-    </a>
 
-    <a class="span3 data-block widget-block" href="#">
-      <section>
-       <span class="icon-reorder"></span>
-       <strong>Another Option</strong>
-      </section>
-    </a>
-
-    <a class="span3 data-block widget-block" href="#">
-      <section>
-       <span class="icon-reorder"></span>
-       <strong>Another Option</strong>
-      </section>
-    </a>
-   <% end %>
-    
   </div>
-</div>
+ </div>
 
 <div class="container">
   <div class="row">
@@ -56,6 +34,4 @@
 </div><!--/container-->
 
 
-<%= link_to "Log your hours", new_user_hour_path, :class => "btn" %>
-<%= link_to "Your Archived Hours", archives_path, :class => "btn" %>
   

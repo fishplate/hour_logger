@@ -12,6 +12,17 @@
         <% end %>
       </tr>
     </thead>
+    <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td class="bold"><%=@total%></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tfoot>
     <tbody>
     <% @user_hours.each do |user_hour| %>
       <tr>
@@ -19,22 +30,13 @@
         <td><%= user_hour.placement.name %></td>
         <td><%= user_hour.placement.area %></td>
         <td><%= user_hour.hours %></td>
-        <td><b><%= confirmation(user_hour.confirmed) %></b></td>
+        <td><b><%= confirmation(user_hour.confirmed).capitalize %></b></td>
         <% unless @archived %>
-          <td><%= link_to "edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning"%></td>
+          <td><%= link_to "Edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning"%></td>
           <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn btn-small" %></td>
         <% end %>
       </tr>
     </tbody>
     <% end %>
   </table>
-  <table>
-    <thread>
-      <tr>
-      <th>Totals Hours</th>
-      </tr>
-    </thread>
-    <tr>
-      <td><%=@total%></td>
-    </tr>
-  </table>
+  

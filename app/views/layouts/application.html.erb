@@ -37,6 +37,7 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
   <body>
+    <div id="wrap">
     <%= bootstrap_flash %>
     <% if user_signed_in? %>
     <%= render "shared/usernav" %> 
@@ -44,9 +45,13 @@
     <%= render 'shared/nav' %>
     <% end %>       
     <%= yield %>
+     </div>   
     <% if user_signed_in? %>
     <%= render "shared/userfooter" %> 
-    <% end %>       
+    <% else %>
+    <%= render "shared/signupfooter" %>
+    <% end %> 
+      
 
 
   </body>

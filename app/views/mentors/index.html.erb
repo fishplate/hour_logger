@@ -1,85 +1,88 @@
 <div class="container">
  <div class="row">
- <div class="span7 data-block"> 
-  <header>
-  <h2><span class="icon-group">&nbsp;Approve Users</span></h2>
-</header>
-<h2>To Review</h2>
-<% if !@users.empty? %>
- <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Approve User</th>
-    </tr>
-  </thead>
-    <tbody>
-      <% if !@outstanding.empty? %>
-      <% @outstanding.each do |user| %>
-      <tr>
-        <td><%= "#{user.first_name}" %></td>
-        <td><%= "#{user.last_name}" %></td>
-        <td><%=link_to 'Approve', mentor_path(user), :class => "btn " + hours_status?(user) %></td>
-      </tr>
+  <div class="span12 data-block"> 
+   <header>
+    <h2><span class="icon-user">&nbsp;Approve User Hours</span></h2>
+   </header>
+    <% if !@users.empty? %>
+     <table class="table table-hover">
+      <thead>
+       <tr class="threeCol">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Approve Hours</th>
+       </tr>
+      </thead>
+       <tbody>
+        <% if !@outstanding.empty? %>
+        <% @outstanding.each do |user| %>
+         <tr>
+          <td><%="#{user.first_name}"%></td>
+          <td><%="#{user.last_name}"%></td>
+          <td><%=link_to 'Approve', mentor_path(user), :class => "btn btn-success " %></td>
+         </tr>
+        <% end %> 
       <% end %>
-    <% else %>
-      <p class="notice"> No Outstanding User Hours </p>
-    <% end %>
-    </tbody>
-  </table>
+       </tbody>
+      </table>
+    </div>
+   </div>
+ </div>
 
+ <div class="container">
+ <div class="row">
+  <div class="span12 data-block"> 
+   <header>
+    <h2><span class="icon-user">&nbsp;Reviewed</span></h2>
+   </header>
+     <table class="table table-hover">
+      <thead>
+       <tr class="threeCol">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Reviewed</th>
+       </tr>
+      </thead>
+       <tbody>
+        <% @processed.each do |user| %>
+         <tr>
+          <td><%="#{user.first_name}"%></td>
+          <td><%="#{user.last_name}"%></td>
+          <td><%=link_to 'Review', mentor_path(user), :class => "btn btn-success " %></td>
+         </tr>
+         <% end %>
+         
+         <% end %>
+       </tbody>
+      </table>
+    </div>
+   </div>
+ </div>
 
-  <h2>Reviewed</h2>
-
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Reviewed</th>
-    </tr>
-  </thead>
-    <tbody>
-      <% @processed.each do |user| %>
-      <tr>
-        <td><%= "#{user.first_name}" %></td>
-        <td><%= "#{user.last_name}" %></td>
-        <td><%=link_to 'Reviewed', mentor_path(user), :class => "btn " + hours_status?(user) %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-
- <h3> Users With No Hours</h3>
-  <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>No Hours</th>
-    </tr>
-  </thead>
-    <tbody>
-     <% @no_hours.each do |user| %>
-      <tr>
-        <td><%= "#{user.first_name}" %></td>
-        <td><%= "#{user.last_name}" %></td>
-        <td>No Hours</td>
-      </tr>
-    <% end %>
-    <% else %>
- 
-  <p>No Users To Review</p>
-<% end %>
-
-
-    </tbody>
-  </table>
-  
-
-
-
- </div><!--/span7-->
-</div>
-</div><!--/container-->
+ <div class="container">
+ <div class="row">
+  <div class="span12 data-block"> 
+   <header>
+    <h2><span class="icon-user">&nbsp;Users With No Hours</span></h2>
+   </header>
+     <table class="table table-hover">
+      <thead>
+       <tr class="threeCol">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>No Hours</th>
+       </tr>
+      </thead>
+       <tbody>
+        <% @no_hours.each do |user| %>
+         <tr>
+          <td><%="#{user.first_name}"%></td>
+          <td><%="#{user.last_name}"%></td>
+          <td><span class="icon-ok"></span></td>
+         </tr>
+         <% end %>   
+       </tbody>
+      </table>
+    </div>
+   </div>
+ </div>
