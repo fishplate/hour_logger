@@ -1,3 +1,6 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700|Lato:100,300,400);
+
+
 /* Misc */
 
 .redSquare, .greenSquare {
@@ -18,8 +21,6 @@
 }
 
 /* Login Form */
-
-@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700|Lato:100,300,400);
 
 html {
   height: 100%;
@@ -256,6 +257,24 @@ p.notice{
 	float:left;
 }
 
+.greyBox {
+  background:#7f8c8d;
+}
+
+.hero-unit.greyBox h1 {
+  font-family: 'Open Sans',sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color:white;
+}
+
+.hero-unit.greyBox p {
+  color:white;
+  margin-top:10px;
+}
+
 
 /* TABLES */
 
@@ -377,6 +396,7 @@ tfoot td, tfoot tr{
 
 .grey {
   background:#7F8C8D;
+  padding:10px 10px 0px;
 }
 
 .grey p {
