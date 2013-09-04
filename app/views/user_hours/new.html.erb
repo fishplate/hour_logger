@@ -9,16 +9,47 @@
     </ul>
   </div>
 <% end %>
-<h1>Add your hours for <%= Date.today.strftime("%b %Y") %></h1>
-<%= form_for @user_hour do |f| %>
-  <%= f.label :date_occurred, "Select Day" %>
-  <%= f.select(:date_occurred, options_for_select(@day_options))%>
-  <%= label_tag "Placement name" %>
-  <%= autocomplete_field_tag "placement[name]", placement_name(@placement), user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
-  <%= label_tag "Placement area" %>
-  <%= text_field_tag "placement[area]", placement_area(@placement), :id => "form_area" %>
-  <%= f.label :hours %>
-  <%= f.text_field :hours, :placeholder => "1.5" %><br />
-  <%= link_to "cancel", :back, :class => "btn" %>
-  <%= f.submit "Save hours", :class => "btn btn-success" %>
+<div class="container">
+  <div class="row">
+    <div class="span7 logHours data-block">
+     <%= form_for @user_hour do |f| %>
+      <header>
+       <h2><span class="icon-th">&nbsp;Add your hours for <%= Date.today.strftime("%b %Y") %></span></h2>
+      </header> 
+      <section class="tab-content">
+   
+       <div class="control-group">
+        <%= f.label :date_occurred, "Select Day", :class => 'control-label' %>
+        <div class="controls">
+         <%= f.select(:date_occurred, options_for_select(@day_options))%>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= label_tag "Placement Name", nil, class: 'control-label' %>
+        <div class="controls">
+         <%= autocomplete_field_tag "placement[name]", placement_name(@placement), user_hour_autocomplete_path, :update_elements => {:area => '#form_area'} %>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= label_tag "Placement Area", nil, class: 'control-label' %>
+        <div class="controls">
+         <%= text_field_tag "placement[area]", placement_area(@placement), :id => "form_area" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :hours, :class => 'control-label' %>
+        <div class="controls">
+         <%= f.text_field :hours, :placeholder => "1.5" %>
+         <br>
+          <%= link_to "Cancel", :back, :class => "btn btn-danger" %>
+          <%= f.submit "Save Hours", :class => "btn btn-success" %>
+        </div>
+      </div>
 <% end %>
+</section>
+  </div><!--/span7 -->
+ </div><!--row-->
+</div><!--/container -->
