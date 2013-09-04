@@ -1,66 +1,137 @@
-  <h2>Your Account Details</h2>
-
+<div class="container">
+  <div class="row">
+    <div class="span7 data-block">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>
-</div>
-<div class="row">
-  <div class="span7">
-    <div class="well">
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email, :autofocus => true %></div>
+    <header>
+     <h2><span class="icon-th">&nbsp;Your Account Details</span></h2>
+    </header> 
+     <section class="tab-content">
+      <fieldset>
+       <div class="control-group">
+        <%= f.label :email, :class => 'control-label' %>
+         <div class="controls">
+          <%= f.email_field :email, :autofocus => true %>
+         </div>
+       </div>
 
-      <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, :autofocus => true %>
+       <div class="control-group">
+        <%= f.label :first_name, :class => 'control-label' %>
+         <div class="controls">
+          <%= f.text_field :first_name %>
+         </div>
+       </div>
 
-      <%= f.label :last_name %><br />
-      <%= f.text_field :last_name, :autofocus => true %>
+       <div class="control-group">
+        <%= f.label :last_name, :class => 'control-label' %>
+         <div class="controls">
+          <%= f.text_field :last_name %>
+         </div>
+       </div>
 
-      <%= f.label :gender %><br />
-      <%= f.radio_button :gender, 'female' %><%= f.label :gender, 'female' %>
-      <%= f.radio_button :gender, 'male' %><%= f.label :gender, 'male' %>
-
-      <div><%= f.label :contact_number %><br />
-      <%= f.text_field :contact_number, :autofocus => true %></div>
-
-      <div><%= f.label :date_of_birth %><br />
-        <%= f.date_select(:date_of_birth, :start_year => 1940, :order => [:day, :month, :year]) %>
+       <div class="control-group">
+        <%= f.label :gender, :class => 'control-label' %>
+         <div class="controls">
+          <%= f.label :gender, 'Female', :class => 'control-label radio' %>
+          <%= f.radio_button :gender, 'female' %>
+ 
+          
+          <%= f.label :gender, 'Male', :class => 'control-label radio' %>
+          <%= f.radio_button :gender, 'male' %>
+        </div>
       </div>
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
 
-      <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, :autocomplete => "off" %></div>
+       <br>
 
-      <div><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %></div>
-    </div>
-  </div>
+       <div class="control-group">
+        <%= f.label :contact_number, :class => 'control-label' %>
+         <div clas="controls">
+          <%= f.text_field :contact_number %>
+         </div>
+       </div>
+      
+      <div class="control-group">
+       <%= f.label :date_of_birth, :class => 'control-label' %>
+        <div class="controls">
+         <%= f.text_field(:date_of_birth, :class => 'datepicker') %>
+         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+         <% end %>
+        </div>
+      </div>
 
-  <div class="span5">
-    <div class="well">
-      <h2>Your Mentor</h2>
+      <div class="control-group">
+       <%= f.label :current_password, :class => 'control-label' %>
+        <div class="controls">
+         <%= f.password_field :current_password, :placeholder => 'Enter Password To Update' %>
+         <br>
+         <%= f.submit "Update", :class => "btn-large btn-success" %>
+
+        </div>
+      </div>
+
+    </fieldset>
+    </section>
+  </div><!-- /span7 -->
+
+
+
+
+
+
+
+  <div class="span5 data-block">
+    <header>
+     <h2><span class="icon-group">&nbsp;Your Mentor</span></h2>
+    </header>
       <% if current_user.mentor_id.nil? %>
         <div class="alert alert-error">
           <b>You have no mentor assigned, please choose one from the below list and update.</b>
         </div>
       <% else %>
         <div class="alert alert-success">
-          <p> You have mentor: <b><%= "#{current_user.mentor.first_name} #{current_user.mentor.last_name}" %></b> selected, to change this, choose one from the below list and update.</p>
+          <p> You have the mentor <b><%= "#{current_user.mentor.first_name} #{current_user.mentor.last_name}" %></b> selected, to change this, choose one from the below list and update.</p>
         </div>
       <% end %>
-      <%= f.select :mentor_id, options_for_select(Mentor.all.map {|p| [ "#{p.first_name} #{p.last_name}", p.id ] })%>
-    </div>
-    <div class="well">
-      <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password %></div>
+      
+      <section class="tab-content">
+      <div class="control-group selectBox">
+       <%= f.label :mentor, :class => 'control-label' %>
+        <div class="controls">
+         <%= f.select :mentor_id, options_for_select(Mentor.all.map {|p| [ "#{p.first_name} #{p.last_name}", p.id ] })%>
+        </div>
+     </div>
+   </section>
+ </div>
 
-      <div><%= f.submit "Update", :class => "btn btn-success" %></div>
-    <% end %>
-    </div>
-    <div class="well">
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "btn btn-danger" %></p>
-    </div>
+     <div class="span5 changePassword data-block">
+      <header>
+     <h2><span class="icon-lock">&nbsp;Change Password</span></h2>
+    </header>
+    <section class="tab-content">
+    <div class="control-group">
+       <%= f.label :password, 'New Password', :class => 'control-label' %>
+        <div class="controls">
+         <%= f.password_field :password, :autocomplete => "off" %>
+        </div>
+      </div>
 
 
-<%= link_to "Back", :back, :class => "btn" %>
+      <div class="control-group">
+       <%= f.label :password_confirmation, :class => 'control-label' %>
+        <div class="controls">
+         <%= f.password_field :password_confirmation, :autocomplete => "off" %>
+        </div>
+      </div>
+      <% end %>
+    </section>
+
+    </div><!-- changepassowrd data-block -->
+    
+   
+    
+  </div><!-- span5 -->
+ </div><!--/row-->
+</div><!-- /container -->
+
+
