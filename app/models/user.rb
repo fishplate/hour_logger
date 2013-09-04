@@ -6,11 +6,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :is_mentor
   attr_accessible :last_name, :first_name, :gender, :date_of_birth, :contact_number, :mentor_id
 
   has_many :user_hours, :dependent => :destroy
   belongs_to :mentor
+
+  def display_name
+    self.email
+  end
 
   def make_mentor
     required = [self.first_name, self.last_name, self.email]
@@ -22,6 +26,14 @@ class User < ActiveRecord::Base
       )
     if @mentor.save
       self.is_mentor = true
+      self.save
+    end
+  end
+
+  def remove_mentor
+    mentor = Mentor.find_by_email(self.email)
+    if mentor
+      self.is_mentor = false if mentor.destroy
       self.save
     end
   end

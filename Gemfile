@@ -6,6 +6,8 @@ gem 'json'
 gem 'jquery-rails'
 # Authentication
 gem 'devise'
+# Active Admin
+gem 'activeadmin'
 
 #autocomplete
 gem 'rails3-jquery-autocomplete'

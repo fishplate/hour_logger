@@ -1,7 +1,7 @@
 HourLogger::Application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
-
   resources :user_hours
   resources :archives
   resources :mentors
@@ -14,9 +14,9 @@ HourLogger::Application.routes.draw do
     unauthenticated :user do
       root :to => 'devise/sessions#new'
     end
-    
-end
+  end
 
   # auto completeroute
   get "user_hour/autocomplete" => 'user_hours#autocomplete_placement_name'
+  ActiveAdmin.routes(self)
 end
