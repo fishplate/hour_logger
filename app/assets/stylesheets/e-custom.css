@@ -141,10 +141,8 @@ html {
 /* ####### */
 /* $FOOTER */
 /* ####### */
-footer.white {
+footer.register {
   padding-top: 20px;
-  height: 50px;
-  background: white;
   text-align: center;
 }
 
@@ -360,7 +358,7 @@ tfoot td, tfoot tr{
   
   .navbar {
     height: auto;
-    margin-bottom: 0;
+    margin-bottom: 15px;
   }
  
   .navbar .brand {
@@ -389,6 +387,12 @@ tfoot td, tfoot tr{
     margin-right: 0;
     left: 0;
   }
+}
+
+@media (max-width: 480px) {
+
+
+
 }
 
 

@@ -10,3 +10,14 @@ $(document).ready(function(){
   })
 
 });
+
+$(document).ready(function(){
+   $(window).resize(function() {
+      if ($(window).width() <= 980) {
+         $('#pending').text('Pending');
+      }
+      else {
+        $('#pending').text('Pending Approval');
+      }
+   });
+});
