@@ -1,6 +1,6 @@
 <div class="container">
  <div class="row">
-  <div class="span12 data-block"> 
+  <div class="span9 data-block"> 
    <header>
     <h2><span class="icon-user">&nbsp;Approve User Hours</span></h2>
    </header>
@@ -20,7 +20,7 @@
          <tr>
           <td><%="#{user.first_name}"%></td>
           <td><%="#{user.last_name}"%></td>
-          <td><%=link_to 'Approve', mentor_path(user), :class => "btn btn-success " %></td>
+          <td><%=link_to 'Approve', mentor_path(user), :class => "btn " + hours_status?(user) %></td>
          </tr>
         <% end %> 
       <% end %>
@@ -28,12 +28,26 @@
       </table>
     </div>
     </div>
+
+    <div class="span3 data-block">
+     <header>
+       <h2><span class="icon-key">&nbsp;Key</span></h2>
+     </header>
+       <section>
+        <p>As a mentor you need to approve hours for your team members, below is a small key to advise you of what each coloured button means.</p>
+         <div class="redSquare"></div><span class="key">Pending Approval</span><br>
+         <div class="greenSquare"></div><span class="key">Approved</span>
+
+
+      </section>
+    </div>
+
    </div>
  </div>
 
  <div class="container">
  <div class="row">
-  <div class="span12 data-block"> 
+  <div class="span9 data-block"> 
    <header>
     <h2><span class="icon-user">&nbsp;Reviewed</span></h2>
    </header>
@@ -51,7 +65,7 @@
          <tr>
           <td><%="#{user.first_name}"%></td>
           <td><%="#{user.last_name}"%></td>
-          <td><%=link_to 'Review', mentor_path(user), :class => "btn btn-success " %></td>
+          <td><%=link_to 'Review', mentor_path(user), :class => "btn " + hours_status?(user) %></td>
          </tr>
          <% end %>
          
@@ -65,7 +79,7 @@
 
  <div class="container">
  <div class="row">
-  <div class="span12 data-block"> 
+  <div class="span9 data-block"> 
    <header>
     <h2><span class="icon-user">&nbsp;Users With No Hours</span></h2>
    </header>

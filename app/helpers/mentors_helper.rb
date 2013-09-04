@@ -5,7 +5,7 @@ module MentorsHelper
     when all_approved?(user.user_hours)
       return "btn-success"
     when user.user_hours
-      return "btn-inverse"
+      return "btn-danger"
     end
   end
 

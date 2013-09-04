@@ -1,3 +1,22 @@
+/* Misc */
+
+.redSquare, .greenSquare {
+  width:20px;
+  height:20px;
+  background:#DA4F49;
+  display:inline-block;
+}
+
+.greenSquare {
+  background:#1e8449;
+}
+
+.key {
+  margin-left: 10px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+
 /* Login Form */
 
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700|Lato:100,300,400);
