@@ -30,13 +30,13 @@
        </div>
 
        <div class="control-group">
-        <%= f.label :gender, :class => 'control-label' %>
+        <%= f.label :gender, :class => 'control-label', :id => 'gender'%>
          <div class="controls">
-          <%= f.label :gender, 'Female', :class => 'control-label radio' %>
+          <%= f.label :gender, 'Female', :class => 'control-label radio', :id => 'gender_f' %>
           <%= f.radio_button :gender, 'female' %>
  
           
-          <%= f.label :gender, 'Male', :class => 'control-label radio' %>
+          <%= f.label :gender, 'Male', :class => 'control-label radio', :id => 'gender_m' %>
           <%= f.radio_button :gender, 'male' %>
         </div>
       </div>

@@ -45,10 +45,8 @@
     <% end %>       
     <%= yield %>
      
-    <% if user_signed_in? %>
-    <%= render "shared/userfooter" %> 
-    <% else %>
-    <%= render "shared/signupfooter" %>
+    <% if !user_signed_in? %>
+    <%= render "shared/signupfooter" %> 
     <% end %> 
   </body>
 </html>

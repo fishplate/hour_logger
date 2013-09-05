@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="span4 mb20">
+    <div class="span12 mb20">
       <% unless @archived %>
        <%= link_to "Log your hours", new_user_hour_path, :class => "btn btn-success" %>
-       <%= link_to "Your Archived Hours", archives_path, :class => "btn btn-success" %>
+       <%= link_to "Archived Hours", archives_path, :class => "btn btn-success" %>
       <% end %>
     </div>
 
@@ -23,7 +23,7 @@
          </section>
       <% else %>
        <header>
-        <h2><span class="icon-th">&nbsp;Your <% if @archived %>Archived <% end %>User hours for <%= @user_hours.first.date_occurred.strftime('%b, %Y') %></span></h2>
+        <h2><span class="icon-th">&nbsp;<% if @archived %>Archived <% end %>Your Hours for <%= @user_hours.first.date_occurred.strftime('%b, %Y') %></span></h2>
       </header>
       
        <%= render 'shared/userhours' %>

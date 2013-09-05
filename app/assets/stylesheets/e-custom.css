@@ -391,7 +391,36 @@ tfoot td, tfoot tr{
 
 @media (max-width: 480px) {
 
+ .hero-unit {
+  padding:15px;
+  font-size:16px;
+ }
 
+ .hero-unit.greyBox h1 {
+  font-size:26px;
+  letter-spacing: 0px;
+ }
+
+
+}
+
+@media (max-width: 420px) {
+
+ .edit_user .controls, .logHours .controls {
+    margin-left: 0px;
+}
+
+#gender {
+  float:none;
+}
+
+#gender_f {
+ padding-left:0px;
+}
+
+.changePassword .control-label {
+  width:100%;
+}
 
 }
 
@@ -457,15 +486,5 @@ tfoot td, tfoot tr{
   height: 60px;
 }
 
-
-
-/* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
 
     
