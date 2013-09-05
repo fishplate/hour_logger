@@ -84,7 +84,7 @@
     <header>
      <h2><span class="icon-group">&nbsp;Your Mentor</span></h2>
     </header>
-      <% if current_user.mentor_id.nil? %>
+      <% if current_user.mentor.nil? %>
         <div class="alert alert-error">
           <b>You have no mentor assigned, please choose one from the below list and update.</b>
         </div>
