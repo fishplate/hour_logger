@@ -21,7 +21,11 @@ module ApplicationHelper
   end
 
   def full_name
-    current_user.first_name + " " + current_user.last_name
+    if current_user.first_name && current_user.last_name
+      current_user.first_name + " " + current_user.last_name
+    else
+      current_user.email
+    end
   end
 
   def salutation
