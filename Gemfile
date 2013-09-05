@@ -6,9 +6,14 @@ gem 'json'
 gem 'jquery-rails'
 # Authentication
 gem 'devise'
+# Active Admin
+gem 'activeadmin'
 
 #autocomplete
 gem 'rails3-jquery-autocomplete'
+
+#Datepicker
+gem 'bootstrap-datepicker-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -1,17 +1,36 @@
-<h2>Sign in</h2>
+<div class="container">
+ <div class="row">
+  <div class="span8 offset2">
+   <div id="login-wrapper">
+ <%= form_for(resource, :as => resource_name, :html => {class:"form login-form"}, :url => session_path(resource_name)) do |f| %>
+ <legend>Sign in to <span class="blue">HourLogger</span></legend>
+  <div class="inner-login-wrapper">
+   <%= f.label :email %>
+   <%= f.email_field :email, :autofocus => true %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+   <%= f.label :password %>
+   <%= f.password_field :password %>
+    <div class="footer">
+   <% if devise_mapping.rememberable? -%>
+    <%= f.check_box :remember_me %> <%= f.label :remember_me, :class => 'checkbox inline' %>
+   <% end -%>
+   <br>
+   <br>
+   <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+   <% end -%>
+   </div>
+   <br>
+    <%= f.submit "Sign in", :class => 'btn btn-success' %>
+   </div><!--/inner-login-wrapper-->
+  <% end %>
+   </div><!--/login wrapper -->
+  </div>
+ </div><!--row -->
+</div><!--/container -->
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+

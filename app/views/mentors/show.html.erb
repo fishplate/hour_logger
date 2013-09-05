@@ -1,21 +1,43 @@
-<h1>Approve User Hours</h1>
-<h2><%= @user.first_name %> <%= @user.last_name %></h2>
-<% if !@user.user_hours.empty? %>
-  <% ordered_hours(@user.user_hours).each do |hour| %>
-    <div class="well">
-      <li><b>Name</b> : <%= hour.placement.name %></li>
-      <li><b>Area</b> : <%= hour.placement.area %></li>
-      <li><b>Hours</b> : <%= hour.hours %></li>
-      <!--This needs to use controller to approve hours -->
-      <% if aproved?(hour) %>
-        <button class="btn btn-disabled" disabled>Aprroved</button>
-      <% else %>
-        <%= link_to "Approve", "#", :class => "btn " + confirmed_hours?(hour) %>
-      <% end %>
+<div class="container">
+  <div class="row">
+    <div class="span12 data-block">
+      <header>
+        <h2><span class="icon-th">&nbsp;Approve User Hours</span></h2>
+      </header>
+      <div class="table-responsive">
+       <table class="table table-hover">
+        <thead>
+         <tr>
+          <th>Date</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Placement Name</th>
+          <th>Placement Area</th>
+          <th>Hours</th>
+          <th>Approve</th>
+         </tr>
+        </thead>
+          <tbody>
+           <% if !@user.user_hours.empty? %>
+            <% ordered_hours(@user.user_hours).each do |hour| %>
+             <tr>
+              <td><%= hour.date_occurred %></td>
+              <td><%= @user.first_name %></td>
+              <td><%= @user.last_name %></td>
+              <td><%= hour.placement.name %></td>
+              <td><%= hour.placement.area %></td>
+              <td><%= hour.hours %></td>
+              <% if aproved?(hour) %>
+              <td><button class="btn btn-disabled" disabled>Approved</button></td>
+              <% else %>
+              <td><%= link_to "Approve", approves_path(user: @user, hour: hour, id: current_user.id), :method => :post, :class => "btn " + confirmed_hours?(hour) %></td>
+              <% end %>
+             </tr>
+            <% end %>
+           </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
-  <% end %>
-<% else %>
-  <div class="well">
-    <p> No hours to review </p>
+   </div>
   </div>
-<% end %>
