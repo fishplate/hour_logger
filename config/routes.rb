@@ -1,7 +1,6 @@
 HourLogger::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users
   resources :user_hours
   resources :archives
   resources :mentors
@@ -15,6 +14,10 @@ HourLogger::Application.routes.draw do
       root :to => 'devise/sessions#new'
     end
   end
+
+  devise_for :users, :controllers => { 
+    sessions: "devise_overrides/sessions_overrides"
+  }
 
   # auto completeroute
   get "user_hour/autocomplete" => 'user_hours#autocomplete_placement_name'

@@ -7,11 +7,18 @@ describe User do
       @user = User.new(user_params)
     end
 
-    it "should be abe to create a user" do
+    it "should be abe to create a user if in whitelist" do
+      UserWhiteList.create!(email: user_params[:email])
       @user.save.should == true
     end
 
+    it "should not be able to create a user not in whitelist" do
+      @user.save.should == false
+      @user.errors.full_messages.first.should == "Email not authorised"
+    end
+
     it "should be able to update a user" do
+      UserWhiteList.create!(email: user_params[:email])
       new_number =  "555555555"
       @user.update_attributes(contact_number: new_number).should == true
       @user.reload
@@ -34,6 +41,7 @@ describe User do
 
   context "User as a mentor" do
     before(:each) do
+      UserWhiteList.create!(email: user_params[:email])
       @user = User.create!(user_params)
     end
     it "should be able to create a mentor from user" do
@@ -49,6 +57,8 @@ describe User do
     end
 
     it "should be able to review hours if a mentor" do
+      UserWhiteList.create!(email: user_params[:email])
+      UserWhiteList.create!(email: "test@example.com")
       @user.make_mentor
       @norm_user = User.create!(
         email: "test@example.com",
@@ -64,6 +74,8 @@ describe User do
     end
 
     it "should be able to review users if a mentor" do
+      UserWhiteList.create!(email: user_params[:email])
+      UserWhiteList.create!(email: "test@example.com")
       @user.make_mentor
       @norm_user = User.create!(
         email: "test@example.com",

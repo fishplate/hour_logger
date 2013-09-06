@@ -11,7 +11,6 @@ en:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
       confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
-
   devise:
     failure:
       already_authenticated: 'You are already signed in.'
@@ -23,7 +22,7 @@ en:
       invalid_token: 'Invalid authentication token.'
       timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'Your account was not activated yet.'
-    sessions:
+    sessions_overrides:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
     passwords:
