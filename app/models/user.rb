@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :is_mentor
   attr_accessible :last_name, :first_name, :gender, :date_of_birth, :contact_number, :mentor_id
 
+  before_save :check_white_list
+
   has_many :user_hours, :dependent => :destroy
   belongs_to :mentor
 
@@ -86,6 +88,25 @@ private
     confirmed = user.user_hours.map {|hour| hour if hour.confirmed}
     confirmed.delete_if {|x| x == nil}
     if confirmed.empty?
+      return false
+    else
+      return true
+    end
+  end
+
+  #before saving a user
+  def check_white_list
+    email = self.email
+    if email_in_whitelist?(email)
+      return true
+    else
+      self.errors[:email] = "not authorised"
+      return false
+    end
+  end
+
+  def email_in_whitelist?(email)
+    if UserWhiteList.find_by_email(email).nil?
       return false
     else
       return true

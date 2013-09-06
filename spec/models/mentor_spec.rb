@@ -28,6 +28,7 @@ describe Mentor do
 
     before(:each) do
       @mentor = Mentor.create!(mentor_params)
+      UserWhiteList.create!(email: "test@example.com")
       @user = User.create!(
         email: "test@example.com",
         password: "password",

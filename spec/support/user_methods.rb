@@ -1,4 +1,5 @@
 def given_user
+  @whitelist ||= UserWhiteList.create!(email: user_params[:email])
   @user ||= User.create!(user_params)
 end
 
