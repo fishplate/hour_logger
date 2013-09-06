@@ -7,6 +7,7 @@ describe MentorsController do
       @user = given_user
       @user.make_mentor
       sign_in @user
+      UserWhiteList.create!(email: "test.user@example.com")
       @user2 = User.create!(
         first_name: "test",
         last_name: "user",

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904173651) do
+ActiveRecord::Schema.define(:version => 20130906200504) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(:version => 20130904173651) do
     t.datetime "updated_at",                       :null => false
     t.boolean  "archived",      :default => false
     t.boolean  "confirmed",     :default => false
+  end
+
+  create_table "user_white_lists", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
