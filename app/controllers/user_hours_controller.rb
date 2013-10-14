@@ -48,6 +48,7 @@ class UserHoursController < ApplicationController
     @user_hour = current_user.user_hours.find(params[:id])
     @placement_name = @user_hour.placement.name
     @placement_area = @user_hour.placement.area
+    @placement = @user_hour.placement
   end
 
   def update
