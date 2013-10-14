@@ -12,10 +12,14 @@ class UserHoursController < ApplicationController
       @archived = false
       @user_hours = current_user.user_hours.get_date
       @total = calculate_totals(@user_hours)
+      @part_total = calculate_participants(@user_hours)
+      @new_part_total = calculate_new_participants(@user_hours)
     else
       @archived = true
       @user_hours = current_user.user_hours.archived.get_date("01/#{month}/#{year}")
       @total = calculate_totals(@user_hours)
+      @part_total = calculate_participants(@user_hours)
+      @new_part_total = calculate_new_participants(@user_hours)
     end
   end
 
@@ -99,6 +103,20 @@ private
     return unless hours
     unless hours.empty?
       hours.map {|a| a.hours}.sum
+    end
+  end
+
+  def calculate_participants(hours)
+    return unless hours
+    unless hours.empty?
+      hours.map {|a| a.number_participants}.sum
+    end
+  end
+
+  def calculate_new_participants(hours)
+    return unless hours
+    unless hours.empty?
+      hours.map {|a| a.new_participants}.sum
     end
   end
 
