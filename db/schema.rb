@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906200504) do
+ActiveRecord::Schema.define(:version => 20131014183044) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,10 +66,12 @@ ActiveRecord::Schema.define(:version => 20130906200504) do
     t.float    "hours"
     t.integer  "placement_id"
     t.date     "date_occurred"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.boolean  "archived",      :default => false
-    t.boolean  "confirmed",     :default => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.boolean  "archived",            :default => false
+    t.boolean  "confirmed",           :default => false
+    t.integer  "number_participants"
+    t.integer  "new_participants"
   end
 
   create_table "user_white_lists", :force => true do |t|
