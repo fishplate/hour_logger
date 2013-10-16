@@ -86,6 +86,7 @@ private
     args = ["", nil]
     response = true
     details = current_user.as_json :except => [:created_at, :id, :updated_at]
+    details.merge!(mentor: current_user.mentor)
     args.each do |arg|
       response = false if details.values.include?(arg)
     end
