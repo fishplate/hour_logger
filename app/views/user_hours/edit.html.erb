@@ -18,7 +18,6 @@
       </header> 
       <section class="tab-content">
    
-       
 
       <div class="control-group">
         <%= label_tag "Placement Name", nil, class: 'control-label' %>
@@ -38,6 +37,20 @@
        <%= f.label :hours, :class => 'control-label' %>
         <div class="controls">
          <%= f.text_field :hours, :placeholder => "1.5" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :number_participants, "Number of participants", :class => 'control-label' %>
+        <div class="controls">
+         <%= f.number_field :number_participants%>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :new_participants, "Number of new participants", :class => 'control-label' %>
+        <div class="controls">
+         <%= f.number_field :new_participants%>
          <br>
           <%= link_to "cancel", :back, :class => "btn" %>
           <%= f.submit "Update hours", :class => "btn btn-success" %>

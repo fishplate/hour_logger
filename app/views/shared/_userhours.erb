@@ -7,6 +7,8 @@
        <th>Placement Area</th>
        <th>Hours</th>
        <th>Status</th>
+       <th>Participants</th>
+       <th>New Participants</th>
         <% unless @archived %>
          <th>Edit</th>
          <th>Remove</th>
@@ -20,6 +22,8 @@
       <td class="bold">Total:</td>
       <td class="bold"><%=@total%></td>
       <td></td>
+      <td class="bold"><%=@part_total%></td>
+      <td class="bold"><%=@new_part_total%></td>
       <td></td>
       <td></td>
     </tr>
@@ -27,11 +31,13 @@
     <tbody>
     <% @user_hours.each do |user_hour| %>
       <tr>
-        <td><%= link_to user_hour.date_occurred, user_hour_path(user_hour.id) %></td>
+        <td><%= user_hour.date_occurred %></td>
         <td><%= user_hour.placement.name %></td>
         <td><%= user_hour.placement.area %></td>
         <td><%= user_hour.hours %></td>
         <td><b><%= confirmation(user_hour.confirmed).capitalize %></b></td>
+        <td><%= user_hour.number_participants %></td>
+        <td><%= user_hour.new_participants %></td>
         <% unless @archived %>
           <td><%= link_to "Edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning"%></td>
           <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn btn-small" %></td>

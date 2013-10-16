@@ -43,6 +43,20 @@
        <%= f.label :hours, :class => 'control-label' %>
         <div class="controls">
          <%= f.text_field :hours, :placeholder => "1.5" %>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :number_participants, "Number of participants", :class => 'control-label' %>
+        <div class="controls">
+         <%= f.number_field :number_participants%>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :new_participants, "Number of new participants", :class => 'control-label' %>
+        <div class="controls">
+         <%= f.number_field :new_participants%>
          <br>
           <%= link_to "Cancel", :back, :class => "btn btn-danger" %>
           <%= f.submit "Save Hours", :class => "btn btn-success" %>
