@@ -119,9 +119,11 @@ private
   def calculate_participants(hours)
     return unless hours
     unless hours.empty?
+      male = hours.map {|a| a.number_participants_male unless a.number_participants_male.nil?}.delete_if {|x| x == nil}
+      female = hours.map {|a| a.number_participants_female unless a.number_participants_female.nil?}.delete_if {|x| x == nil}
       {
-        male: hours.map {|a| a.number_participants_male}.sum,
-        female:  hours.map {|a| a.number_participants_female}.sum
+        male: male.sum,
+        female: female.sum
       }
     end
   end
@@ -129,9 +131,11 @@ private
   def calculate_new_participants(hours)
     return unless hours
     unless hours.empty?
+      male = hours.map {|a| a.new_participants_male unless a.new_participants_male.nil?}.delete_if {|x| x == nil}
+      female = hours.map {|a| a.new_participants_female unless a.new_participants_female.nil?}.delete_if {|x| x == nil}
       {
-        male: hours.map {|a| a.new_participants_male}.sum,
-        female:  hours.map {|a| a.new_participants_female}.sum
+        male: male.empty? ? 0 : male.sum,
+        female: female.empty? ? 0 : female.sum
       }
     end
   end
