@@ -47,16 +47,30 @@
       </div>
 
       <div class="control-group">
-       <%= f.label :number_participants, "Number of participants", :class => 'control-label' %>
+       <%= f.label :number_participants_male, "Number of male participants", :class => 'control-label' %>
         <div class="controls">
-         <%= f.number_field :number_participants%>
+         <%= f.number_field :number_participants_male%>
         </div>
       </div>
 
       <div class="control-group">
-       <%= f.label :new_participants, "Number of new participants", :class => 'control-label' %>
+       <%= f.label :number_participants_female, "Number of female participants", :class => 'control-label' %>
         <div class="controls">
-         <%= f.number_field :new_participants%>
+         <%= f.number_field :number_participants_female%>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :new_participants_male, "Number of new male participants", :class => 'control-label' %>
+        <div class="controls">
+         <%= f.number_field :new_participants_male%>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :new_participants_female, "Number of new female participants", :class => 'control-label' %>
+        <div class="controls">
+         <%= f.number_field :new_participants_female%>
          <br>
           <%= link_to "Cancel", :back, :class => "btn btn-danger" %>
           <%= f.submit "Save Hours", :class => "btn btn-success" %>

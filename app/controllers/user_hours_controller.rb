@@ -11,15 +11,23 @@ class UserHoursController < ApplicationController
     if [month, year].include?(nil)
       @archived = false
       @user_hours = current_user.user_hours.get_date
+      part_total = calculate_participants(@user_hours)
+      new_part_total = calculate_new_participants(@user_hours)
       @total = calculate_totals(@user_hours)
-      @part_total = calculate_participants(@user_hours)
-      @new_part_total = calculate_new_participants(@user_hours)
+      @part_male_total = part_total[:male] unless part_total.nil?
+      @part_female_total = part_total[:female] unless part_total.nil?
+      @new_part_male_total = new_part_total[:male] unless new_part_total.nil?
+      @new_part_female_total = new_part_total[:female] unless new_part_total.nil?
     else
       @archived = true
       @user_hours = current_user.user_hours.archived.get_date("01/#{month}/#{year}")
+      part_total = calculate_participants(@user_hours)
+      new_part_total = calculate_new_participants(@user_hours)
       @total = calculate_totals(@user_hours)
-      @part_total = calculate_participants(@user_hours)
-      @new_part_total = calculate_new_participants(@user_hours)
+      @part_male_total = part_total[:male] unless part_total.nil?
+      @part_female_total = part_total[:female] unless part_total.nil?
+      @new_part_male_total = new_part_total[:male] unless new_part_total.nil?
+      @new_part_female_total = new_part_total[:female] unless new_part_total.nil?
     end
   end
 
@@ -111,14 +119,20 @@ private
   def calculate_participants(hours)
     return unless hours
     unless hours.empty?
-      hours.map {|a| a.number_participants}.sum
+      {
+        male: hours.map {|a| a.number_participants_male}.sum,
+        female:  hours.map {|a| a.number_participants_female}.sum
+      }
     end
   end
 
   def calculate_new_participants(hours)
     return unless hours
     unless hours.empty?
-      hours.map {|a| a.new_participants}.sum
+      {
+        male: hours.map {|a| a.new_participants_male}.sum,
+        female:  hours.map {|a| a.new_participants_female}.sum
+      }
     end
   end
 
