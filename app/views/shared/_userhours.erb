@@ -2,12 +2,25 @@
 <table class="table table-hover">
     <thead>
       <tr>
+        <!-- Sorry Rich :D -->
+        <th style="visibility: hidden;"></th>
+        <th style="visibility: hidden;"></th>
+        <th style="visibility: hidden;"></th>
+        <th style="visibility: hidden;"></th>
+        <th style="visibility: hidden;"></th>
+        <th colspan="2">Participants</th>
+        <th colspan="2">New Participants</th>
+      </tr>
+      <tr>
        <th>Date</th>
        <th>Placement Name</th>
        <th>Placement Area</th>
        <th>Hours</th>
        <th>Status</th>
-       <th>Participants</th>
+       <th>Male</th>
+       <th>Female</th>
+       <th>Male</th>
+       <th>Female</th>
        <th>New Participants</th>
         <% unless @archived %>
          <th>Edit</th>
@@ -22,8 +35,11 @@
       <td class="bold">Total:</td>
       <td class="bold"><%=@total%></td>
       <td></td>
-      <td class="bold"><%=@part_total%></td>
-      <td class="bold"><%=@new_part_total%></td>
+      <td class="bold"><%=@part_male_total%></td>
+      <td class="bold"><%=@part_female_total%></td>
+      <td class="bold"><%=@new_part_male_total%></td>
+      <td class="bold"><%=@new_part_female_total%></td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
@@ -36,8 +52,10 @@
         <td><%= user_hour.placement.area %></td>
         <td><%= user_hour.hours %></td>
         <td><b><%= confirmation(user_hour.confirmed).capitalize %></b></td>
-        <td><%= user_hour.number_participants %></td>
-        <td><%= user_hour.new_participants %></td>
+        <td><%= user_hour.number_participants_male %></td>
+        <td><%= user_hour.number_participants_female %></td>
+        <td><%= user_hour.new_participants_male %></td>
+        <td><%= user_hour.new_participants_female %></td>
         <% unless @archived %>
           <td><%= link_to "Edit", edit_user_hour_path(user_hour.id), :class => "btn btn-warning"%></td>
           <td><%= link_to "x", user_hour_path(user_hour.id), method: :delete, :class => "btn btn-small" %></td>
