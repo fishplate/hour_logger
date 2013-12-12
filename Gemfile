@@ -30,8 +30,6 @@ group :development, :test do
   gem 'cane'
 end
 
-# heroku
-gem 'heroku'
 group :production do
   gem 'pg'
   gem 'thin'
