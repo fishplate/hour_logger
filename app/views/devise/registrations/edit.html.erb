@@ -54,6 +54,13 @@
        <%= f.label :date_of_birth, :class => 'control-label' %>
         <div class="controls">
          <%= f.text_field(:date_of_birth, :class => 'datepicker') %>
+        </div>
+      </div>
+
+      <div class="control-group">
+       <%= f.label :volunteer_status, :class => 'control-label' %>
+        <div class="controls">
+         <%= f.select :volunteer_status, options_for_select(['Young Leader', 'Young Ambassador','Community Volunteer'], current_user.volunteer_status)%>
          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
          <% end %>
@@ -75,11 +82,6 @@
   </div><!-- /span7 -->
 
 
-
-
-
-
-
   <div class="span5 data-block">
     <header>
      <h2><span class="icon-group">&nbsp;Your Mentor</span></h2>
@@ -88,17 +90,17 @@
         <div class="alert alert-error">
           <b>You have no mentor assigned, please choose one from the below list and update.</b>
         </div>
-      <% else %>
-        <div class="alert alert-success">
-          <p> You have the mentor <b><%= "#{current_user.mentor.first_name} #{current_user.mentor.last_name}" %></b> selected, to change this, choose one from the below list and update.</p>
-        </div>
       <% end %>
       
       <section class="tab-content">
       <div class="control-group selectBox">
        <%= f.label :mentor, :class => 'control-label' %>
         <div class="controls">
-         <%= f.select :mentor_id, options_for_select(Mentor.all.map {|p| [ "#{p.first_name} #{p.last_name}", p.id ] })%>
+          <% if current_user.mentor %>
+           <%= f.select :mentor_id, options_for_select(Mentor.all.map {|p| [ "#{p.first_name} #{p.last_name}", p.id ]}, ["#{current_user.mentor.first_name} #{current_user.mentor.last_name}", current_user.mentor.id ])%>
+          <% else %>
+            <%= f.select :mentor_id, options_for_select(Mentor.all.map {|p| [ "#{p.first_name} #{p.last_name}", p.id ]})%>
+          <% end %>
         </div>
      </div>
    </section>

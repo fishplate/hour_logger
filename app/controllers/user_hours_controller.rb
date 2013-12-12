@@ -11,15 +11,23 @@ class UserHoursController < ApplicationController
     if [month, year].include?(nil)
       @archived = false
       @user_hours = current_user.user_hours.get_date
+      part_total = calculate_participants(@user_hours)
+      new_part_total = calculate_new_participants(@user_hours)
       @total = calculate_totals(@user_hours)
-      @part_total = calculate_participants(@user_hours)
-      @new_part_total = calculate_new_participants(@user_hours)
+      @part_male_total = part_total[:male] unless part_total.nil?
+      @part_female_total = part_total[:female] unless part_total.nil?
+      @new_part_male_total = new_part_total[:male] unless new_part_total.nil?
+      @new_part_female_total = new_part_total[:female] unless new_part_total.nil?
     else
       @archived = true
       @user_hours = current_user.user_hours.archived.get_date("01/#{month}/#{year}")
+      part_total = calculate_participants(@user_hours)
+      new_part_total = calculate_new_participants(@user_hours)
       @total = calculate_totals(@user_hours)
-      @part_total = calculate_participants(@user_hours)
-      @new_part_total = calculate_new_participants(@user_hours)
+      @part_male_total = part_total[:male] unless part_total.nil?
+      @part_female_total = part_total[:female] unless part_total.nil?
+      @new_part_male_total = new_part_total[:male] unless new_part_total.nil?
+      @new_part_female_total = new_part_total[:female] unless new_part_total.nil?
     end
   end
 
@@ -86,6 +94,7 @@ private
     args = ["", nil]
     response = true
     details = current_user.as_json :except => [:created_at, :id, :updated_at]
+    details.merge!(mentor: current_user.mentor)
     args.each do |arg|
       response = false if details.values.include?(arg)
     end
@@ -110,14 +119,24 @@ private
   def calculate_participants(hours)
     return unless hours
     unless hours.empty?
-      hours.map {|a| a.number_participants}.sum
+      male = hours.map {|a| a.number_participants_male unless a.number_participants_male.nil?}.delete_if {|x| x == nil}
+      female = hours.map {|a| a.number_participants_female unless a.number_participants_female.nil?}.delete_if {|x| x == nil}
+      {
+        male: male.sum,
+        female: female.sum
+      }
     end
   end
 
   def calculate_new_participants(hours)
     return unless hours
     unless hours.empty?
-      hours.map {|a| a.new_participants}.sum
+      male = hours.map {|a| a.new_participants_male unless a.new_participants_male.nil?}.delete_if {|x| x == nil}
+      female = hours.map {|a| a.new_participants_female unless a.new_participants_female.nil?}.delete_if {|x| x == nil}
+      {
+        male: male.empty? ? 0 : male.sum,
+        female: female.empty? ? 0 : female.sum
+      }
     end
   end
 

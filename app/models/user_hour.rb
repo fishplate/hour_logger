@@ -1,6 +1,7 @@
 class UserHour < ActiveRecord::Base
   attr_accessible :hours, :placement_id, :date_occurred, :archived,
-  :confirmed, :number_participants, :new_participants
+  :confirmed, :number_participants_male, :number_participants_female,
+  :new_participants_male, :new_participants_female
 
   validates_presence_of :placement_id, :hours, :date_occurred
   validates_uniqueness_of :date_occurred, :scope => :user_id

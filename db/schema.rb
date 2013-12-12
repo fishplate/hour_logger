@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131014183044) do
+ActiveRecord::Schema.define(:version => 20131017074721) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,12 +66,14 @@ ActiveRecord::Schema.define(:version => 20131014183044) do
     t.float    "hours"
     t.integer  "placement_id"
     t.date     "date_occurred"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.boolean  "archived",            :default => false
-    t.boolean  "confirmed",           :default => false
-    t.integer  "number_participants"
-    t.integer  "new_participants"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.boolean  "archived",                   :default => false
+    t.boolean  "confirmed",                  :default => false
+    t.integer  "number_participants_male"
+    t.integer  "number_participants_female"
+    t.integer  "new_participants_male"
+    t.integer  "new_participants_female"
   end
 
   create_table "user_white_lists", :force => true do |t|
@@ -100,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20131014183044) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.boolean  "is_mentor",              :default => false
+    t.string   "volunteer_status"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
