@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   def make_mentor
     required = [self.first_name, self.last_name, self.email]
-    required.each {|x| return if x.nil?}
+    required.each {|x| return false if x.nil?}
     @mentor = Mentor.new(
       first_name: self.first_name,
       last_name: self.last_name,

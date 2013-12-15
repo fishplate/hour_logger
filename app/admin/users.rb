@@ -42,8 +42,12 @@ ActiveAdmin.register User do
   end
 
   member_action :make_mentor do
-    User.find(params[:id]).make_mentor
-    redirect_to(admin_users_path, :notice => "Mentor created")
+    if User.find(params[:id]).make_mentor
+      redirect_to(admin_users_path, :notice => "Mentor created")
+    else
+      notice = 'Error creating mentor! Please check first and last name present'
+      redirect_to(admin_users_path, :notice => notice)
+    end
   end
 
   member_action :remove_mentor do
