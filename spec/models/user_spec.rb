@@ -52,7 +52,7 @@ describe User do
 
     it "should not be able to create mentor if no attributes" do
       @user.update_attributes(first_name: nil)
-      @user.make_mentor.should == nil
+      @user.make_mentor.should == false
       Mentor.count.should == 0
     end
 
