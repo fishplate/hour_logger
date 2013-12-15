@@ -4,7 +4,7 @@ class ProcessHours
   def self.process(date)
     month = date.month
     year = date.year
-    collection= UserHour.get_date("01/#{month}/#{year}")
+    collection = UserHour.get_date("01/#{month}/#{year}")
     archive_collection(collection)
   end
 
