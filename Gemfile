@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.15'
 gem 'mysql2'
 gem 'json'
 gem 'jquery-rails'
@@ -30,8 +30,6 @@ group :development, :test do
   gem 'cane'
 end
 
-# heroku
-gem 'heroku'
 group :production do
   gem 'pg'
   gem 'thin'
