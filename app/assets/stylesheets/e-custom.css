@@ -21,6 +21,9 @@
 }
 
 /* Login Form */
+body {
+  background:url('/assets/hourloggerbg.jpg') center center;
+}
 
 html {
   height: 100%;
