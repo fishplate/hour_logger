@@ -8,6 +8,7 @@ namespace :check_hours do
         ProcessHours.process(Date.today.beginning_of_month - 1.month)
       else
         puts "Not start of month"
+      end
     rescue => e
       puts "#{Time.now} : something went bad, infact this did: #{e}"
     end
