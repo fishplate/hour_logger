@@ -10,6 +10,7 @@ namespace :check_hours do
         puts "Not start of month"
     rescue => e
       puts "#{Time.now} : something went bad, infact this did: #{e}"
+
     end
   end
 end
