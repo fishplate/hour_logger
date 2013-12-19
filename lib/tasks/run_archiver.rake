@@ -11,7 +11,6 @@ namespace :check_hours do
       end
     rescue => e
       puts "#{Time.now} : something went bad, infact this did: #{e}"
-
     end
   end
 end
